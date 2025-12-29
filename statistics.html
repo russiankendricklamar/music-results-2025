@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Статистика 2025 | Russian Kendrick Lamar">
+    <meta property="og:image" content="images/og-image.jpg">
+    <title>Детальная статистика 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000;
+            --bg: #ffffff;
+            --darker: #f8f8f8;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+        }
+
+        html.dark-mode {
+            --primary: #fff;
+            --bg: #0d0d0d;
+            --darker: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+            --border: #333333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* ============ NAVIGATION ============ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        html.dark-mode header {
+            background: rgba(13, 13, 13, 0.95);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: #ccc;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* ============ CHARTS SECTION ============ */
+        .charts-section {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .chart-container {
+            background: var(--darker);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .chart-container:nth-child(1) { animation-delay: 0.1s; }
+        .chart-container:nth-child(2) { animation-delay: 0.2s; }
+        .chart-container:nth-child(3) { animation-delay: 0.3s; }
+        .chart-container:nth-child(4) { animation-delay: 0.4s; }
+        .chart-container:nth-child(5) { animation-delay: 0.5s; }
+        .chart-container:nth-child(6) { animation-delay: 0.6s; }
+
+        .chart-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        /* ============ BACK BUTTON ============ */
+        .back-button {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--primary);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--darker);
+            padding: 60px 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 24px;
+            }
+
+            .hero-container {
+                padding: 0 24px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .charts-section {
+                padding: 60px 24px;
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 12px 0;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            nav {
+                gap: 16px;
+                font-size: 0.85rem;
+                display: none;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+
+            .hero-container {
+                padding: 0 16px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .charts-section {
+                padding: 40px 16px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 40px;
+            }
+
+            .chart-container {
+                padding: 20px;
+            }
+
+            .chart-title {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">2025</a>
+            <div class="nav-right">
+                <nav>
+                    <a href="index.html">На главную</a>
+                </nav>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>📊 Детальная статистика</h1>
+            <p class="hero-subtitle">Полный анализ музыкального года 2025</p>
+        </div>
+    </section>
+
+    <!-- CHARTS SECTION -->
+    <section class="charts-section">
+        <h2 class="section-title">Графики и метрики</h2>
+        <div class="charts-grid">
+            <!-- Chart 1: Monthly Listening -->
+            <div class="chart-container">
+                <h3 class="chart-title">Слушаемость по месяцам</h3>
+                <canvas id="monthChart"></canvas>
+            </div>
+
+            <!-- Chart 2: Top Genres -->
+            <div class="chart-container">
+                <h3 class="chart-title">Топ жанры</h3>
+                <canvas id="genreChart"></canvas>
+            </div>
+
+            <!-- Chart 3: Listening Hours -->
+            <div class="chart-container">
+                <h3 class="chart-title">Слушания по часам дня</h3>
+                <canvas id="hoursChart"></canvas>
+            </div>
+
+            <!-- Chart 4: Weekly Activity -->
+            <div class="chart-container">
+                <h3 class="chart-title">Активность по дням недели</h3>
+                <canvas id="weekChart"></canvas>
+            </div>
+
+            <!-- Chart 5: Top Artists -->
+            <div class="chart-container">
+                <h3 class="chart-title">Топ-10 артистов</h3>
+                <canvas id="artistsChart"></canvas>
+            </div>
+
+            <!-- Chart 6: Listening Habits -->
+            <div class="chart-container">
+                <h3 class="chart-title">Распределение прослушиваний</h3>
+                <canvas id="habitsChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- BACK BUTTON -->
+    <section style="text-align: center; padding: 40px; max-width: 1400px; margin: 0 auto;">
+        <a href="index.html" class="back-button">← Вернуться на главную</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-meta">© 2025 Russian Kendrick Lamar. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ DARK MODE ============
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+            const isDark = html.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // ============ CHART CONFIG ============
+        const isDark = html.classList.contains('dark-mode');
+        const textColor = isDark ? '#aaaaaa' : '#666666';
+        const gridColor = isDark ? '#333333' : '#e0e0e0';
+        const bgColor = isDark ? '#1a1a1a' : '#ffffff';
+
+        // Chart 1: Monthly Listening
+        new Chart(document.getElementById('monthChart'), {
+            type: 'line',
+            data: {
+                labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+                datasets: [{
+                    label: 'Часов слушаний',
+                    data: [45, 52, 48, 61, 55, 67, 73, 82, 79, 85, 88, 95],
+                    borderColor: '#000',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#000'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true },
+                    x: { ticks: { color: textColor }, grid: { color: gridColor } }
+                }
+            }
+        });
+
+        // Chart 2: Top Genres
+        new Chart(document.getElementById('genreChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Hip-Hop', 'Trap', 'R&B', 'Indie', 'Электро', 'Pop', 'Rock', 'Другое'],
+                datasets: [{
+                    data: [25, 20, 18, 15, 12, 5, 3, 2],
+                    backgroundColor: ['#000', '#222', '#444', '#666', '#888', '#aaa', '#ccc', '#e0e0e0']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { labels: { color: textColor } } }
+            }
+        });
+
+        // Chart 3: Hourly Activity
+        new Chart(document.getElementById('hoursChart'), {
+            type: 'bar',
+            data: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:00'],
+                datasets: [{
+                    label: 'Прослушивания',
+                    data: [8, 5, 12, 28, 35, 42, 22],
+                    backgroundColor: '#000'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true },
+                    x: { ticks: { color: textColor }, grid: { color: gridColor } }
+                }
+            }
+        });
+
+        // Chart 4: Weekly Activity
+        new Chart(document.getElementById('weekChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+                datasets: [{
+                    label: 'Прослушивания',
+                    data: [65, 59, 70, 68, 72, 85, 78],
+                    borderColor: '#000',
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { labels: { color: textColor } } },
+                scales: {
+                    r: { ticks: { color: textColor }, grid: { color: gridColor } }
+                }
+            }
+        });
+
+        // Chart 5: Top Artists
+        new Chart(document.getElementById('artistsChart'), {
+            type: 'horizontalBar',
+            type: 'bar',
+            data: {
+                labels: ['Kendrick', 'Tyler', 'Frank', 'Ye', 'J Cole', 'Drake', 'Travis', 'Playboi', 'Thug', 'Juice'],
+                datasets: [{
+                    label: 'Количество прослушиваний',
+                    data: [245, 198, 187, 165, 152, 148, 135, 128, 115, 108],
+                    backgroundColor: '#000'
+                }]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true },
+                    y: { ticks: { color: textColor }, grid: { color: gridColor } }
+                }
+            }
+        });
+
+        // Chart 6: Listening Habits Pie
+        new Chart(document.getElementById('habitsChart'), {
+            type: 'pie',
+            data: {
+                labels: ['На работе', 'В пути', 'Дома', 'На тренировке', 'В машине', 'Другое'],
+                datasets: [{
+                    data: [30, 25, 25, 12, 5, 3],
+                    backgroundColor: ['#000', '#222', '#444', '#666', '#888', '#aaa']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { labels: { color: textColor } } }
+            }
+        });
+    </script>
+</body>
+</html>
