@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Музыкальные итоги 2025 | The Channel">
+    <meta property="og:title" content="Музыкальные итоги 2025 | @russiankendricklamar">
     <meta property="og:image" content="images/og-image.jpg">
     <title>2025 Year in Music</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -331,33 +331,6 @@
             border-color: #fff;
         }
 
-        /* ============ PLAYLIST SECTION ============ */
-        .playlist-section {
-            padding: 100px 40px;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .playlist-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .playlist-section h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 60px;
-            letter-spacing: -1px;
-            color: var(--text);
-        }
-
-        .playlist-embed {
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        }
-
         /* ============ CTA SECTION ============ */
         .cta-section {
             padding: 100px 40px;
@@ -378,6 +351,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
+            margin-bottom: 40px;
         }
 
         .cta-card {
@@ -425,6 +399,52 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        /* ============ VIDEOS CARD (FULL WIDTH) ============ */
+        .videos-card {
+            background: var(--darker);
+            padding: 48px 32px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .videos-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-8px);
+        }
+
+        .videos-card h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .videos-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .videos-card a {
+            display: inline-block;
+            padding: 12px 40px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .videos-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
         /* ============ FOOTER ============ */
         footer {
             background: var(--darker);
@@ -463,25 +483,6 @@
             margin-bottom: 60px;
         }
 
-        .telegram-btn {
-            display: inline-block;
-            padding: 14px 40px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary);
-        }
-
-        .telegram-btn:hover {
-            background: transparent;
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
         .spotify-btn {
             display: inline-block;
             padding: 14px 40px;
@@ -498,6 +499,25 @@
         .spotify-btn:hover {
             background: var(--primary);
             color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .telegram-btn:hover {
+            background: transparent;
+            color: var(--primary);
             transform: translateY(-2px);
         }
 
@@ -530,8 +550,7 @@
             }
 
             .featured-section,
-            .cta-section,
-            .playlist-section {
+            .cta-section {
                 padding: 60px 24px;
             }
         }
@@ -567,6 +586,10 @@
                 font-size: 2.5rem;
             }
 
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
             .cta-primary,
             .cta-secondary {
                 display: block;
@@ -575,15 +598,12 @@
                 max-width: 300px;
             }
 
-            .stats {
-                padding: 60px 16px;
+            .cta-secondary {
+                margin-left: 0;
             }
 
-            .featured-section,
-            .cta-section,
-            .playlist-section,
-            footer {
-                padding: 40px 16px;
+            .stats {
+                padding: 60px 16px;
             }
 
             .featured-section,
@@ -603,8 +623,7 @@
                 font-size: 1.8rem;
             }
 
-            .cta-section h2,
-            .playlist-section h2 {
+            .cta-section h2 {
                 font-size: 1.8rem;
                 margin-bottom: 40px;
             }
@@ -620,7 +639,7 @@
                 <a href="albums.html">Альбомы</a>
                 <a href="artists.html">Артисты</a>
                 <a href="discoveries.html">Открытия</a>
-                <a href="index.html#playlist">Плейлист</a>
+                <a href="videos.html">Клипы</a>
             </nav>
         </div>
     </header>
@@ -630,9 +649,9 @@
         <div class="hero-container">
             <h1>Год в музыке</h1>
             <p class="hero-subtitle">Музыкальные итоги 2025</p>
-            <p class="hero-channel">@russiankendricklamar</p>
+            <p class="hero-channel">@your_channel</p>
             <a href="#best-track" class="cta-primary">Лучший трек</a>
-            <a href="#cta" class="cta-secondary">Открыть топы</a>
+            <a href="#summaries" class="cta-secondary">Открыть итоги</a>
         </div>
     </section>
 
@@ -676,32 +695,44 @@
         </div>
     </section>
 
-    <!-- CTA SECTION: ALBUMS & ARTISTS -->
-    <section id="cta" class="cta-section">
-        <h2>Итоги 2025</h2>
+    <!-- CTA SECTION: SUMMARIES -->
+    <section id="summaries" class="cta-section">
+        <h2>📊 Итоги 2025</h2>
         <div class="cta-grid">
             <div class="cta-card">
                 <h3>🎵</h3>
                 <h3>Топ-5 альбомов</h3>
-                <p>Лучшие альбомы 2025 года. Полные описания и ссылки на музыкальные платформы.</p>
+                <p>Лучшие альбомы 2025 года с полными описаниями.</p>
                 <a href="albums.html">Смотреть топ</a>
             </div>
+
             <div class="cta-card">
                 <h3>⭐</h3>
                 <h3>Топ-5 артистов</h3>
-                <p>Артисты, которые определили звук 2025 года. Их лучшие треки и релизы.</p>
+                <p>Артисты, которые определили звук 2025 года.</p>
                 <a href="artists.html">Смотреть топ</a>
             </div>
-        </div>
-    </section>
 
-    <!-- PLAYLIST -->
-    <section id="playlist" class="playlist-section">
-        <div class="playlist-container">
-            <h2>🎵 Полный плейлист</h2>
-            <div class="playlist-embed">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/playlist/37i9dQZEVXd8JyT25jgzMd?si=0f3951f2702b440c" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <div class="cta-card">
+                <h3>🔎</h3>
+                <h3>Открытия года</h3>
+                <p>Артисты, которых мы узнали в 2025 году.</p>
+                <a href="discoveries.html">Смотреть открытия</a>
             </div>
+
+            <div class="cta-card">
+                <h3>🌍</h3>
+                <h3>Топ зарубежных работ</h3>
+                <p>Лучшие иностранные треки и релизы 2025.</p>
+                <a href="foreign.html">Смотреть топ</a>
+            </div>
+        </div>
+
+        <!-- VIDEOS CARD FULL WIDTH -->
+        <div class="videos-card">
+            <h3>🎬 Лучшие клипы</h3>
+            <p>Музыкальные видео, которые поразили нас в 2025 году. Смотрите подборку лучших клипов года.</p>
+            <a href="videos.html">Смотреть клипы</a>
         </div>
     </section>
 
@@ -712,7 +743,7 @@
             <p class="footer-description">Подпишитесь на мой телеграм-канал, чтобы не пропустить музыкальные рекомендации и новые открытия</p>
             <div class="footer-buttons">
                 <a href="https://t.me/@russiankendricklamar" target="_blank" class="telegram-btn">Telegram</a>
-                <a href="https://open.spotify.com/user/lifeofwhitedesiigner" target="_blank" class="spotify-btn">Spotify Profile</a>
+                <a href="https://open.spotify.com/user/YOUR_SPOTIFY_ID" target="_blank" class="spotify-btn">Spotify Profile</a>
             </div>
             <p class="footer-meta">© 2025 Your Channel. Все права защищены.</p>
         </div>
