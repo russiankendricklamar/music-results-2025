@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Топ-5 альбомов 2025 | The Channel">
-    <meta property="og:image" content="images/og-image.jpg">
-    <title>Топ-5 альбомов 2025</title>
+    <meta property="og:title" content="Альбомы 2025 | Не до конца рандомные строчки из песен">
+    <title>Топ альбомов 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,11 +19,18 @@
             --primary: #000;
             --bg: #ffffff;
             --darker: #f8f8f8;
-            --gray: #f0f0f0;
-            --light-gray: #e8e8e8;
             --text: #1a1a1a;
             --text-secondary: #666666;
             --border: #e0e0e0;
+        }
+
+        html.dark-mode {
+            --primary: #fff;
+            --bg: #0d0d0d;
+            --darker: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+            --border: #333333;
         }
 
         html {
@@ -37,6 +43,7 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* ============ NAVIGATION ============ */
@@ -47,13 +54,17 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 3px solid var(--primary);
             padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        html.dark-mode header {
+            background: rgba(13, 13, 13, 0.95);
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            max-width: 100%;
             padding: 0 40px;
             display: flex;
             justify-content: space-between;
@@ -68,9 +79,10 @@
             text-decoration: none;
         }
 
-        nav {
+        .nav-right {
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 30px;
         }
 
         nav a {
@@ -101,25 +113,31 @@
             width: 100%;
         }
 
+        .theme-toggle {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--darker);
+        }
+
         /* ============ HERO ============ */
         .hero {
             padding-top: 160px;
-            padding-bottom: 120px;
+            padding-bottom: 80px;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
+        html.dark-mode .hero {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
         }
 
         .hero-container {
@@ -127,13 +145,25 @@
             margin: 0 auto;
             padding: 0 40px;
             text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             letter-spacing: -2px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             line-height: 1.1;
             color: var(--text);
         }
@@ -141,117 +171,210 @@
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 48px;
             font-weight: 400;
         }
 
-        /* ============ MAIN CONTENT ============ */
-        .container {
+        /* ============ CONTENT SECTION ============ */
+        .content-section {
+            padding: 100px 40px;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
         }
 
-        /* ============ ITEMS LIST ============ */
-        .items-list {
-            padding: 80px 40px;
+        .albums-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
         }
 
-        .item-full {
-            margin-bottom: 80px;
-            padding-bottom: 80px;
+        .album-card {
+            background: var(--darker);
+            padding: 60px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            transition: all 0.3s ease;
+        }
+
+        .album-card:nth-child(1) { animation-delay: 0.1s; }
+        .album-card:nth-child(2) { animation-delay: 0.2s; }
+        .album-card:nth-child(3) { animation-delay: 0.3s; }
+        .album-card:nth-child(4) { animation-delay: 0.4s; }
+        .album-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .album-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .album-number {
+            position: absolute;
+            font-size: 120px;
+            font-weight: 900;
+            opacity: 0.08;
+            top: -40px;
+            left: 20px;
+            color: var(--primary);
+            z-index: 0;
+        }
+
+        .album-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .album-cover {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--primary) 0%, #333333 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .album-cover.placeholder {
+            background: linear-gradient(135deg, var(--primary) 0%, #333333 100%);
+            color: var(--bg);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .album-info {
+            position: relative;
+        }
+
+        .album-rank {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .album-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .album-artist {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .album-description {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .album-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
             border-bottom: 1px solid var(--border);
         }
 
-        .item-full:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .meta-item {
+            flex: 1;
+            min-width: 150px;
         }
 
-        .item-rank {
+        .meta-label {
             font-size: 0.85rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
             font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
         }
 
-        .item-header {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 60px;
-            align-items: flex-start;
-            margin-bottom: 32px;
-        }
-
-        .item-image {
-            width: 100%;
-            aspect-ratio: 1;
-            background: var(--gray);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .item-info h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: 8px;
-            line-height: 1.2;
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 700;
             color: var(--text);
         }
 
-        .item-artist {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            font-weight: 500;
-        }
-
-        .item-links {
+        /* ============ STREAMING LINKS ============ */
+        .streaming-links {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
 
-        .link-button {
-            display: inline-block;
-            padding: 10px 20px;
-            border: 1px solid var(--text);
-            color: var(--text);
+        .stream-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--primary);
+            color: var(--bg);
             text-decoration: none;
-            font-size: 0.9rem;
+            border-radius: 50px;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            border-radius: 4px;
+            border: 2px solid var(--primary);
         }
 
-        .link-button:hover {
-            background: var(--text);
+        .stream-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stream-btn.secondary {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .stream-btn.secondary:hover {
+            background: var(--primary);
             color: var(--bg);
         }
 
-        .item-description {
-            font-size: 1.05rem;
+        /* ============ IMAGE UPLOAD ============ */
+        .image-upload-hint {
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-top: 32px;
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        html.dark-mode .image-upload-hint {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         /* ============ FOOTER ============ */
         footer {
             background: var(--darker);
             padding: 80px 40px;
-            border-top: 1px solid var(--border);
+            border-top: 3px solid var(--primary);
             text-align: center;
         }
 
@@ -265,7 +388,6 @@
             font-weight: 900;
             margin-bottom: 24px;
             letter-spacing: -1px;
-            color: var(--text);
         }
 
         .footer-description {
@@ -282,14 +404,14 @@
             justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
-        .back-button {
+        .telegram-btn {
             display: inline-block;
             padding: 14px 40px;
             background: var(--primary);
-            color: white;
+            color: var(--bg);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
@@ -298,9 +420,28 @@
             border: 2px solid var(--primary);
         }
 
-        .back-button:hover {
+        .telegram-btn:hover {
             background: transparent;
             color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .spotify-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .spotify-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
             transform: translateY(-2px);
         }
 
@@ -318,26 +459,22 @@
                 padding: 0 24px;
             }
 
-            nav {
-                gap: 24px;
+            .hero-container {
+                padding: 0 24px;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
-            .items-list {
+            .content-section {
                 padding: 60px 24px;
             }
 
-            .item-header {
+            .album-card {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .item-image {
-                max-width: 400px;
-                margin: 0 auto;
+                gap: 30px;
+                padding: 40px;
             }
         }
 
@@ -351,8 +488,7 @@
             }
 
             nav {
-                gap: 16px;
-                font-size: 0.85rem;
+                display: none;
             }
 
             .logo {
@@ -372,21 +508,47 @@
                 font-size: 2rem;
             }
 
-            .items-list {
+            .content-section {
                 padding: 40px 16px;
             }
 
-            .item-info h2 {
-                font-size: 1.8rem;
+            .album-card {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px 20px;
             }
 
-            .item-full {
-                margin-bottom: 60px;
-                padding-bottom: 60px;
+            .album-cover {
+                font-size: 60px;
+            }
+
+            .album-title {
+                font-size: 1.5rem;
+            }
+
+            .album-number {
+                font-size: 80px;
+            }
+
+            .albums-grid {
+                gap: 40px;
+            }
+
+            .streaming-links {
+                gap: 8px;
+            }
+
+            .stream-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
             }
 
             footer {
                 padding: 60px 16px;
+            }
+
+            .footer-title {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -396,139 +558,289 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">2025</a>
-            <nav>
-                <a href="albums.html">Альбомы</a>
-                <a href="artists.html">Артисты</a>
-                <a href="index.html#playlist">Плейлист</a>
-            </nav>
+            <div class="nav-right">
+                <nav>
+                    <a href="index.html">На главную</a>
+                    <a href="artists.html">Артисты</a>
+                    <a href="discoveries.html">Открытия</a>
+                    <a href="videos.html">Клипы</a>
+                </nav>
+                <button class="theme-toggle" id="themeToggle" title="Переключить режим">🌙</button>
+            </div>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
         <div class="hero-container">
-            <h1>🎵 Топ-5 альбомов 2025</h1>
-            <p class="hero-subtitle">Лучшие альбомы года с полными описаниями</p>
+            <h1>Топ альбомов 2025</h1>
+            <p class="hero-subtitle">Лучшие альбомы, которые определили звук года</p>
         </div>
     </section>
 
-    <!-- ITEMS LIST -->
-    <section class="items-list">
-        <div class="container">
-
-            <!-- ALBUM #1 -->
-            <div class="item-full">
-                <div class="item-rank">#1 Альбом года</div>
-                <div class="item-header">
-                    <div class="item-image">
-                        <img src="images/album1.jpg" alt="Album 1">
+    <!-- CONTENT -->
+    <section class="content-section">
+        <div class="albums-grid">
+            <!-- Album 1 -->
+            <div class="album-card">
+                <div class="album-number">01</div>
+                <div class="album-image">
+                    <div class="album-cover placeholder" id="cover1" style="background-image: url('images/album1.jpg')">
+                        Обложка альбома
                     </div>
-                    <div class="item-info">
-                        <h2>Album Title 1</h2>
-                        <p class="item-artist">Artist Name</p>
-                        <div class="item-links">
-                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
-                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
-                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                </div>
+                <div class="album-info">
+                    <span class="album-rank">№1 Альбом года</span>
+                    <h3 class="album-title">Album Title 1</h3>
+                    <p class="album-artist">Artist Name</p>
+                    <p class="album-description">
+                        Подробное описание первого альбома. Расскажите, почему это ваш топ-1 альбом, какие треки вам нравятся больше всего, как долго вы его слушали, какие эмоции он вызывает.
+                    </p>
+                    <div class="album-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Жанр</div>
+                            <div class="meta-value">Hip-Hop</div>
                         </div>
-                        <p class="item-description">Подробное описание первого альбома. Расскажите, почему это ваш топ-1 альбом, какие треки вам нравятся больше всего, как долго вы его слушали, какие эмоции он вызывает. Это может быть длинный текст с анализом музыки, стиля и значения этого альбома.</p>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Треков</div>
+                            <div class="meta-value">12</div>
+                        </div>
+                    </div>
+                    <div class="streaming-links">
+                        <a href="https://open.spotify.com/album/ALBUM_ID_1" target="_blank" class="stream-btn">Spotify</a>
+                        <a href="https://music.apple.com/album/ALBUM_ID_1" target="_blank" class="stream-btn secondary">Apple Music</a>
+                        <a href="https://www.youtube.com/results?search_query=Album+Title+1" target="_blank" class="stream-btn secondary">YouTube</a>
+                        <a href="https://www.yandexmusic.ru/album/ALBUM_ID_1" target="_blank" class="stream-btn secondary">Яндекс</a>
+                    </div>
+                    <div class="image-upload-hint">
+                        💡 Обложка подгружается из папки <code>images/album1.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
             </div>
 
-            <!-- ALBUM #2 -->
-            <div class="item-full">
-                <div class="item-rank">#2 Альбом года</div>
-                <div class="item-header">
-                    <div class="item-image">
-                        <img src="images/album2.jpg" alt="Album 2">
+            <!-- Album 2 -->
+            <div class="album-card">
+                <div class="album-number">02</div>
+                <div class="album-image">
+                    <div class="album-cover placeholder" id="cover2" style="background-image: url('images/album2.jpg')">
+                        Обложка альбома
                     </div>
-                    <div class="item-info">
-                        <h2>Album Title 2</h2>
-                        <p class="item-artist">Artist Name</p>
-                        <div class="item-links">
-                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
-                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
-                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                </div>
+                <div class="album-info">
+                    <span class="album-rank">№2 Альбом года</span>
+                    <h3 class="album-title">Album Title 2</h3>
+                    <p class="album-artist">Artist Name</p>
+                    <p class="album-description">
+                        Подробное описание второго альбома. Расскажите о его особенностях, звучании, стилистике. Какие треки выделяются? Чем он отличается от других релизов?
+                    </p>
+                    <div class="album-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Жанр</div>
+                            <div class="meta-value">R&B/Soul</div>
                         </div>
-                        <p class="item-description">Подробное описание второго альбома. Расскажите о его особенностях, звучании, стилистике. Какие треки выделяются? Чем он отличается от других релизов этого артиста? Какое место он занимает в вашем рейтинге и почему?</p>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Треков</div>
+                            <div class="meta-value">14</div>
+                        </div>
+                    </div>
+                    <div class="streaming-links">
+                        <a href="https://open.spotify.com/album/ALBUM_ID_2" target="_blank" class="stream-btn">Spotify</a>
+                        <a href="https://music.apple.com/album/ALBUM_ID_2" target="_blank" class="stream-btn secondary">Apple Music</a>
+                        <a href="https://www.youtube.com/results?search_query=Album+Title+2" target="_blank" class="stream-btn secondary">YouTube</a>
+                        <a href="https://www.yandexmusic.ru/album/ALBUM_ID_2" target="_blank" class="stream-btn secondary">Яндекс</a>
+                    </div>
+                    <div class="image-upload-hint">
+                        💡 Обложка подгружается из папки <code>images/album2.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
             </div>
 
-            <!-- ALBUM #3 -->
-            <div class="item-full">
-                <div class="item-rank">#3 Альбом года</div>
-                <div class="item-header">
-                    <div class="item-image">
-                        <img src="images/album3.jpg" alt="Album 3">
+            <!-- Album 3 -->
+            <div class="album-card">
+                <div class="album-number">03</div>
+                <div class="album-image">
+                    <div class="album-cover placeholder" id="cover3" style="background-image: url('images/album3.jpg')">
+                        Обложка альбома
                     </div>
-                    <div class="item-info">
-                        <h2>Album Title 3</h2>
-                        <p class="item-artist">Artist Name</p>
-                        <div class="item-links">
-                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
-                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
-                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                </div>
+                <div class="album-info">
+                    <span class="album-rank">№3 Альбом года</span>
+                    <h3 class="album-title">Album Title 3</h3>
+                    <p class="album-artist">Artist Name</p>
+                    <p class="album-description">
+                        Подробное описание третьего альбома. Поделитесь своими впечатлениями от этого релиза. Какие треки вам особенно нравятся? Как этот альбом звучит?
+                    </p>
+                    <div class="album-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Жанр</div>
+                            <div class="meta-value">Trap/Rap</div>
                         </div>
-                        <p class="item-description">Подробное описание третьего альбома. Поделитесь своими впечатлениями от этого релиза. Какие треки вам особенно нравятся? Как этот альбом звучит? Какие эмоции он вызывает при прослушивании?</p>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Треков</div>
+                            <div class="meta-value">11</div>
+                        </div>
+                    </div>
+                    <div class="streaming-links">
+                        <a href="https://open.spotify.com/album/ALBUM_ID_3" target="_blank" class="stream-btn">Spotify</a>
+                        <a href="https://music.apple.com/album/ALBUM_ID_3" target="_blank" class="stream-btn secondary">Apple Music</a>
+                        <a href="https://www.youtube.com/results?search_query=Album+Title+3" target="_blank" class="stream-btn secondary">YouTube</a>
+                        <a href="https://www.yandexmusic.ru/album/ALBUM_ID_3" target="_blank" class="stream-btn secondary">Яндекс</a>
+                    </div>
+                    <div class="image-upload-hint">
+                        💡 Обложка подгружается из папки <code>images/album3.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
             </div>
 
-            <!-- ALBUM #4 -->
-            <div class="item-full">
-                <div class="item-rank">#4 Альбом года</div>
-                <div class="item-header">
-                    <div class="item-image">
-                        <img src="images/album4.jpg" alt="Album 4">
+            <!-- Album 4 -->
+            <div class="album-card">
+                <div class="album-number">04</div>
+                <div class="album-image">
+                    <div class="album-cover placeholder" id="cover4" style="background-image: url('images/album4.jpg')">
+                        Обложка альбома
                     </div>
-                    <div class="item-info">
-                        <h2>Album Title 4</h2>
-                        <p class="item-artist">Artist Name</p>
-                        <div class="item-links">
-                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
-                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
-                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                </div>
+                <div class="album-info">
+                    <span class="album-rank">№4 Альбом года</span>
+                    <h3 class="album-title">Album Title 4</h3>
+                    <p class="album-artist">Artist Name</p>
+                    <p class="album-description">
+                        Подробное описание четвёртого альбома. Почему это отличный релиз? Какие инновации он привнёс? Как он вписывается в контекст музыки 2025 года?
+                    </p>
+                    <div class="album-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Жанр</div>
+                            <div class="meta-value">Indie/Rock</div>
                         </div>
-                        <p class="item-description">Подробное описание четвёртого альбома. Почему это отличный релиз? Какие инновации он привнёс? Как он вписывается в контекст музыки 2025 года? Что вам понравилось в этом альбоме?</p>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Треков</div>
+                            <div class="meta-value">13</div>
+                        </div>
+                    </div>
+                    <div class="streaming-links">
+                        <a href="https://open.spotify.com/album/ALBUM_ID_4" target="_blank" class="stream-btn">Spotify</a>
+                        <a href="https://music.apple.com/album/ALBUM_ID_4" target="_blank" class="stream-btn secondary">Apple Music</a>
+                        <a href="https://www.youtube.com/results?search_query=Album+Title+4" target="_blank" class="stream-btn secondary">YouTube</a>
+                        <a href="https://www.yandexmusic.ru/album/ALBUM_ID_4" target="_blank" class="stream-btn secondary">Яндекс</a>
+                    </div>
+                    <div class="image-upload-hint">
+                        💡 Обложка подгружается из папки <code>images/album4.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
             </div>
 
-            <!-- ALBUM #5 -->
-            <div class="item-full">
-                <div class="item-rank">#5 Альбом года</div>
-                <div class="item-header">
-                    <div class="item-image">
-                        <img src="images/album5.jpg" alt="Album 5">
+            <!-- Album 5 -->
+            <div class="album-card">
+                <div class="album-number">05</div>
+                <div class="album-image">
+                    <div class="album-cover placeholder" id="cover5" style="background-image: url('images/album5.jpg')">
+                        Обложка альбома
                     </div>
-                    <div class="item-info">
-                        <h2>Album Title 5</h2>
-                        <p class="item-artist">Artist Name</p>
-                        <div class="item-links">
-                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
-                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
-                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                </div>
+                <div class="album-info">
+                    <span class="album-rank">№5 Альбом года</span>
+                    <h3 class="album-title">Album Title 5</h3>
+                    <p class="album-artist">Artist Name</p>
+                    <p class="album-description">
+                        Подробное описание пятого альбома. Завершите список своими впечатлениями. Почему этот альбом вошёл в топ-5? Какие моменты вам запомнились больше всего?
+                    </p>
+                    <div class="album-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Жанр</div>
+                            <div class="meta-value">Pop/Electronic</div>
                         </div>
-                        <p class="item-description">Подробное описание пятого альбома. Завершите список своими впечатлениями. Почему этот альбом вошёл в топ-5? Какие моменты вам запомнились больше всего? Что вы чувствуете, слушая эту музыку?</p>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Треков</div>
+                            <div class="meta-value">15</div>
+                        </div>
+                    </div>
+                    <div class="streaming-links">
+                        <a href="https://open.spotify.com/album/ALBUM_ID_5" target="_blank" class="stream-btn">Spotify</a>
+                        <a href="https://music.apple.com/album/ALBUM_ID_5" target="_blank" class="stream-btn secondary">Apple Music</a>
+                        <a href="https://www.youtube.com/results?search_query=Album+Title+5" target="_blank" class="stream-btn secondary">YouTube</a>
+                        <a href="https://www.yandexmusic.ru/album/ALBUM_ID_5" target="_blank" class="stream-btn secondary">Яндекс</a>
+                    </div>
+                    <div class="image-upload-hint">
+                        💡 Обложка подгружается из папки <code>images/album5.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <h2 class="footer-title">Вернуться на главную</h2>
-            <p class="footer-description">Посмотрите статистику, лучший трек года и полный плейлист</p>
+            <h2 class="footer-title">Присоединяйтесь</h2>
+            <p class="footer-description">Подпишитесь на канал "Не до конца рандомные строчки из песен", чтобы не пропустить музыкальные рекомендации и новые открытия</p>
             <div class="footer-buttons">
-                <a href="index.html" class="back-button">На главную</a>
+                <a href="https://t.me/your_channel_name" target="_blank" class="telegram-btn">Telegram</a>
+                <a href="https://open.spotify.com/user/YOUR_SPOTIFY_ID" target="_blank" class="spotify-btn">Spotify Profile</a>
             </div>
-            <p class="footer-meta">© 2025 Your Channel. Все права защищены.</p>
+            <p class="footer-meta">© 2025 Не до конца рандомные строчки из песен. Все права защищены.</p>
         </div>
     </footer>
+
+    <script>
+        // ============ DARK MODE ============
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+            const isDark = html.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // ============ IMAGE LOADING ============
+        // Обложки автоматически подгружаются через CSS background-image
+        // Если обложка не найдена, будет показано "Обложка альбома"
+        document.querySelectorAll('.album-cover').forEach(cover => {
+            const bgImage = cover.style.backgroundImage;
+            const img = new Image();
+            img.onload = () => {
+                cover.classList.remove('placeholder');
+            };
+            img.onerror = () => {
+                // Если изображение не загрузилось, остаётся плейсхолдер
+                cover.classList.add('placeholder');
+            };
+            if (bgImage) {
+                img.src = bgImage.slice(5, -2); // Извлекаем URL из url()
+            }
+        });
+    </script>
 </body>
 </html>
