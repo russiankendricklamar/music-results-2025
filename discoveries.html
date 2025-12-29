@@ -199,6 +199,7 @@
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .discovery-card:nth-child(1) { animation-delay: 0.1s; }
@@ -338,6 +339,7 @@
             font-size: 0.9rem;
             transition: all 0.3s ease;
             border: 2px solid var(--primary);
+            cursor: pointer;
         }
 
         .stream-btn:hover {
@@ -355,7 +357,30 @@
             color: var(--bg);
         }
 
-        /* ============ IMAGE UPLOAD ============ */
+        /* ============ VIDEO BUTTON (для первого) ============ */
+        .video-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: var(--primary);
+            color: var(--bg);
+            border: none;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .video-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ============ IMAGE UPLOAD HINT ============ */
         .image-upload-hint {
             display: none;
             font-size: 0.85rem;
@@ -366,13 +391,114 @@
             border-radius: 8px;
             border-left: 3px solid var(--primary);
         }
-        
+
         .discovery-photo.placeholder ~ .image-upload-hint {
             display: block;
         }
 
-        html.dark-mode .image-upload-hint {
-            background: rgba(255, 255, 255, 0.05);
+        /* ============ SIDE VIDEO PANEL ============ */
+        .video-sidebar {
+            position: fixed;
+            right: -500px;
+            top: 0;
+            width: 500px;
+            height: 100vh;
+            background: var(--darker);
+            border-left: 3px solid var(--primary);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .video-sidebar.active {
+            right: 0;
+        }
+
+        html.dark-mode .video-sidebar {
+            background: var(--darker);
+        }
+
+        .video-sidebar-close {
+            align-self: flex-end;
+            background: var(--primary);
+            color: var(--bg);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-sidebar-close:hover {
+            background: var(--text-secondary);
+            transform: scale(1.1);
+        }
+
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .video-info-panel {
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .video-info-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .video-info-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============ OVERLAY (затемнение фона) ============ */
+        .video-overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         /* ============ FOOTER ============ */
@@ -481,6 +607,11 @@
                 gap: 30px;
                 padding: 40px;
             }
+
+            .video-sidebar {
+                width: 100%;
+                right: -100%;
+            }
         }
 
         @media (max-width: 640px) {
@@ -543,7 +674,8 @@
                 gap: 8px;
             }
 
-            .stream-btn {
+            .stream-btn,
+            .video-btn {
                 padding: 10px 16px;
                 font-size: 0.85rem;
             }
@@ -554,6 +686,11 @@
 
             .footer-title {
                 font-size: 1.8rem;
+            }
+
+            .video-sidebar {
+                width: 100%;
+                right: -100%;
             }
         }
     </style>
@@ -586,7 +723,7 @@
     <!-- CONTENT -->
     <section class="content-section">
         <div class="discoveries-grid">
-            <!-- Discovery 1 -->
+            <!-- Discovery 1 - С ВИДЕО -->
             <div class="discovery-card">
                 <div class="discovery-number">01</div>
                 <div class="discovery-image">
@@ -596,7 +733,7 @@
                 </div>
                 <div class="discovery-info">
                     <span class="discovery-tag">Открытие №1</span>
-                    <h3 class="discovery-name">Джон Гарик</h3>
+                    <h3 class="discovery-name">Artist Name 1</h3>
                     <p class="discovery-status">Дебютный альбом / Прорыв</p>
                     <p class="discovery-description">
                         Подробное описание первого открытия года. Когда вы услышали этого артиста впервые? Какой трек вас зацепил? Почему вы считаете его открытием года? Как его музыка звучит? Какие эмоции она вызывает? Почему вы думаете, что он станет звездой в будущем?
@@ -608,7 +745,7 @@
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Жанр</div>
-                            <div class="stat-value">Интеллектуальный гоп-трэп</div>
+                            <div class="stat-value">Indie/Alt</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-label">Потенциал</div>
@@ -616,6 +753,7 @@
                         </div>
                     </div>
                     <div class="streaming-links">
+                        <button class="video-btn" id="videoBtn1">Смотреть видео</button>
                         <a href="https://open.spotify.com/artist/ARTIST_ID_1" target="_blank" class="stream-btn">Spotify</a>
                         <a href="https://music.apple.com/artist/ARTIST_ID_1" target="_blank" class="stream-btn secondary">Apple Music</a>
                         <a href="https://www.youtube.com/@artist_username_1" target="_blank" class="stream-btn secondary">YouTube</a>
@@ -798,6 +936,25 @@
         </div>
     </section>
 
+    <!-- SIDE VIDEO PANEL -->
+    <div class="video-overlay" id="videoOverlay"></div>
+    <div class="video-sidebar" id="videoSidebar">
+        <button class="video-sidebar-close" id="videoClose">&times;</button>
+        <div class="video-player" id="videoPlayer">
+            <!-- ВИДЕО БУДЕТ ЗАГРУЖЕНО ЗДЕСЬ -->
+            <video controls autoplay>
+                <source src="videos/discovery1.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео HTML5
+            </video>
+        </div>
+        <div class="video-info-panel">
+            <div class="video-info-title">Artist Name 1</div>
+            <div class="video-info-text">
+                Дебютный альбом / Прорыв
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
@@ -841,6 +998,34 @@
             };
             if (bgImage) {
                 img.src = bgImage.slice(5, -2);
+            }
+        });
+
+        // ============ SIDE VIDEO PANEL ============
+        const videoBtn1 = document.getElementById('videoBtn1');
+        const videoClose = document.getElementById('videoClose');
+        const videoSidebar = document.getElementById('videoSidebar');
+        const videoOverlay = document.getElementById('videoOverlay');
+
+        // Открыть боковую панель видео
+        videoBtn1.addEventListener('click', () => {
+            videoSidebar.classList.add('active');
+            videoOverlay.classList.add('active');
+        });
+
+        // Закрыть боковую панель
+        const closeSidebar = () => {
+            videoSidebar.classList.remove('active');
+            videoOverlay.classList.remove('active');
+        };
+
+        videoClose.addEventListener('click', closeSidebar);
+        videoOverlay.addEventListener('click', closeSidebar);
+
+        // Закрыть при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSidebar();
             }
         });
     </script>
