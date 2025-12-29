@@ -88,16 +88,37 @@
             gap: 30px;
         }
 
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
         nav a {
             font-size: 0.95rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         nav a:hover {
             color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         .theme-toggle {
@@ -111,7 +132,7 @@
         }
 
         .theme-toggle:hover {
-            background: #ccc;
+            background: var(--light-gray);
         }
 
         /* ============ HERO ============ */
