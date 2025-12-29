@@ -65,6 +65,7 @@
             font-weight: 900;
             letter-spacing: -1px;
             color: var(--primary);
+            text-decoration: none;
         }
 
         nav {
@@ -165,6 +166,7 @@
             border: 2px solid var(--primary);
             cursor: pointer;
             letter-spacing: 0.5px;
+            margin: 0 8px;
         }
 
         .cta-primary:hover {
@@ -184,7 +186,7 @@
             transition: all 0.3s ease;
             border: 2px solid var(--light-gray);
             cursor: pointer;
-            margin-left: 16px;
+            margin: 0 8px;
         }
 
         .cta-secondary:hover {
@@ -232,145 +234,13 @@
             letter-spacing: 1px;
         }
 
-        /* ============ CATEGORIES SECTION ============ */
-        section {
+        /* ============ FEATURED TRACK ============ */
+        .featured-section {
             padding: 100px 40px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        section h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 60px;
-            letter-spacing: -1px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: var(--text);
-        }
-
-        section h2 .emoji {
-            font-size: 2.8rem;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
-        }
-
-        .track-card {
-            background: var(--bg);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            border: 1px solid var(--border);
-            position: relative;
-            group: card;
-        }
-
-        .track-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary);
-            background: var(--bg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .track-image {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--gray) 0%, var(--light-gray) 100%);
-        }
-
-        .track-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .track-card:hover .track-image img {
-            transform: scale(1.05);
-        }
-
-        .rank-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.4rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: var(--primary);
-        }
-
-        .track-info {
-            padding: 24px;
-        }
-
-        .track-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text);
-            line-height: 1.3;
-        }
-
-        .track-artist {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-
-        .track-meta {
-            font-size: 0.85rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .meta-tag {
-            background: rgba(0, 0, 0, 0.05);
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .track-link {
-            display: block;
-            padding: 10px 16px;
-            background: rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .track-card:hover .track-link {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        /* ============ FEATURED TRACK ============ */
         .featured-track {
             background: linear-gradient(135deg, var(--primary) 0%, #333333 100%);
             border-radius: 20px;
@@ -379,7 +249,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            margin-bottom: 80px;
             position: relative;
             overflow: hidden;
         }
@@ -464,19 +333,96 @@
 
         /* ============ PLAYLIST SECTION ============ */
         .playlist-section {
+            padding: 100px 40px;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
+        .playlist-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .playlist-section h2 {
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+            color: var(--text);
         }
 
         .playlist-embed {
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ============ CTA SECTION ============ */
+        .cta-section {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .cta-card {
+            background: var(--darker);
+            padding: 48px 32px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .cta-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-8px);
+        }
+
+        .cta-card h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .cta-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .cta-card a {
+            display: inline-block;
+            padding: 12px 40px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         /* ============ FOOTER ============ */
@@ -583,7 +529,9 @@
                 padding: 40px 24px;
             }
 
-            section {
+            .featured-section,
+            .cta-section,
+            .playlist-section {
                 padding: 60px 24px;
             }
         }
@@ -619,10 +567,6 @@
                 font-size: 2.5rem;
             }
 
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
             .cta-primary,
             .cta-secondary {
                 display: block;
@@ -631,30 +575,38 @@
                 max-width: 300px;
             }
 
-            .cta-secondary {
-                margin-left: 0;
-            }
-
             .stats {
                 padding: 60px 16px;
             }
 
-            section {
-                padding: 60px 16px;
+            .featured-section,
+            .cta-section,
+            .playlist-section,
+            footer {
+                padding: 40px 16px;
             }
 
-            .category-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
+            .featured-section,
+            .cta-section {
+                padding: 40px 16px;
             }
 
-            section h2 {
-                font-size: 1.8rem;
-                margin-bottom: 40px;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .stat-number {
                 font-size: 2.5rem;
+            }
+
+            .featured-title {
+                font-size: 1.8rem;
+            }
+
+            .cta-section h2,
+            .playlist-section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
             }
         }
     </style>
@@ -663,12 +615,11 @@
     <!-- NAVIGATION -->
     <header>
         <div class="nav-container">
-            <div class="logo">2025</div>
+            <a href="index.html" class="logo">2025</a>
             <nav>
-                <a href="#best-track">Лучший трек</a>
-                <a href="#artists">Артисты</a>
-                <a href="#discoveries">Открытия</a>
-                <a href="#playlist">Плейлист</a>
+                <a href="albums.html">Альбомы</a>
+                <a href="artists.html">Артисты</a>
+                <a href="index.html#playlist">Плейлист</a>
             </nav>
         </div>
     </header>
@@ -679,8 +630,8 @@
             <h1>Год в музыке</h1>
             <p class="hero-subtitle">Музыкальные итоги 2025</p>
             <p class="hero-channel">@your_channel</p>
-            <a href="#best-track" class="cta-primary">Смотреть итоги</a>
-            <a href="#playlist" class="cta-secondary">Слушать плейлист</a>
+            <a href="#best-track" class="cta-primary">Лучший трек</a>
+            <a href="#cta" class="cta-secondary">Открыть топы</a>
         </div>
     </section>
 
@@ -709,8 +660,7 @@
     </section>
 
     <!-- BEST TRACK -->
-    <section id="best-track">
-        <h2><span class="emoji">🏆</span> Трек года</h2>
+    <section id="best-track" class="featured-section">
         <div class="featured-track">
             <div class="featured-image">
                 <img src="images/best-track.jpg" alt="Best Track 2025">
@@ -725,110 +675,32 @@
         </div>
     </section>
 
-    <!-- TOP ARTISTS -->
-    <section id="artists">
-        <h2><span class="emoji">⭐</span> Артисты года</h2>
-        <div class="category-grid">
-            <div class="track-card">
-                <div class="track-image">
-                    <img src="images/artist1.jpg" alt="Artist 1">
-                    <div class="rank-badge">#1</div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">Artist Name 1</div>
-                    <div class="track-meta">
-                        <span class="meta-tag">5 в топе</span>
-                    </div>
-                    <a href="https://open.spotify.com/artist/ARTIST_ID" target="_blank" class="track-link">На Spotify →</a>
-                </div>
+    <!-- CTA SECTION: ALBUMS & ARTISTS -->
+    <section id="cta" class="cta-section">
+        <h2>📊 Полные рейтинги</h2>
+        <div class="cta-grid">
+            <div class="cta-card">
+                <h3>🎵</h3>
+                <h3>Топ-5 альбомов</h3>
+                <p>Лучшие альбомы 2025 года. Полные описания и ссылки на музыкальные платформы.</p>
+                <a href="albums.html">Смотреть топ</a>
             </div>
-
-            <div class="track-card">
-                <div class="track-image">
-                    <img src="images/artist2.jpg" alt="Artist 2">
-                    <div class="rank-badge">#2</div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">Artist Name 2</div>
-                    <div class="track-meta">
-                        <span class="meta-tag">3 в топе</span>
-                    </div>
-                    <a href="https://open.spotify.com/artist/ARTIST_ID" target="_blank" class="track-link">На Spotify →</a>
-                </div>
-            </div>
-
-            <div class="track-card">
-                <div class="track-image">
-                    <img src="images/artist3.jpg" alt="Artist 3">
-                    <div class="rank-badge">#3</div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">Artist Name 3</div>
-                    <div class="track-meta">
-                        <span class="meta-tag">2 в топе</span>
-                    </div>
-                    <a href="https://open.spotify.com/artist/ARTIST_ID" target="_blank" class="track-link">На Spotify →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DISCOVERIES -->
-    <section id="discoveries">
-        <h2><span class="emoji">🔎</span> Открытия года</h2>
-        <div class="category-grid">
-            <div class="track-card">
-                <div class="track-image">
-                    <img src="images/discovery1.jpg" alt="Discovery">
-                    <div class="rank-badge">✨</div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">New Artist Name</div>
-                    <div class="track-artist">Дебютный альбом</div>
-                    <div class="track-meta">
-                        <span class="meta-tag">Новичок</span>
-                    </div>
-                    <a href="https://open.spotify.com/track/TRACK_ID" target="_blank" class="track-link">Слушать →</a>
-                </div>
-            </div>
-
-            <div class="track-card">
-                <div class="track-image">
-                    <img src="images/discovery2.jpg" alt="Discovery">
-                    <div class="rank-badge">✨</div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">Another New Artist</div>
-                    <div class="track-artist">Лучший дебют</div>
-                    <div class="track-meta">
-                        <span class="meta-tag">Восходящая звезда</span>
-                    </div>
-                    <a href="https://open.spotify.com/track/TRACK_ID" target="_blank" class="track-link">Слушать →</a>
-                </div>
-            </div>
-
-            <div class="track-card">
-                <div class="track-image">
-                    <img src="images/discovery3.jpg" alt="Discovery">
-                    <div class="rank-badge">✨</div>
-                </div>
-                <div class="track-info">
-                    <div class="track-title">Breakthrough Artist</div>
-                    <div class="track-artist">Неожиданный хит</div>
-                    <div class="track-meta">
-                        <span class="meta-tag">Сюрприз года</span>
-                    </div>
-                    <a href="https://open.spotify.com/track/TRACK_ID" target="_blank" class="track-link">Слушать →</a>
-                </div>
+            <div class="cta-card">
+                <h3>⭐</h3>
+                <h3>Топ-5 артистов</h3>
+                <p>Артисты, которые определили звук 2025 года. Их лучшие треки и релизы.</p>
+                <a href="artists.html">Смотреть топ</a>
             </div>
         </div>
     </section>
 
     <!-- PLAYLIST -->
     <section id="playlist" class="playlist-section">
-        <h2><span class="emoji">🎵</span> Полный плейлист</h2>
-        <div class="playlist-embed">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="playlist-container">
+            <h2>🎵 Полный плейлист</h2>
+            <div class="playlist-embed">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/YOUR_PLAYLIST_ID?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
         </div>
     </section>
 
