@@ -374,6 +374,7 @@
 
         /* ============ IMAGE UPLOAD ============ */
         .image-upload-hint {
+            display: none;
             font-size: 0.85rem;
             color: var(--text-secondary);
             margin-top: 16px;
@@ -381,6 +382,10 @@
             background: rgba(0, 0, 0, 0.05);
             border-radius: 8px;
             border-left: 3px solid var(--primary);
+        }
+        
+        .video-thumbnail.placeholder ~ .image-upload-hint {
+            display: block;
         }
 
         html.dark-mode .image-upload-hint {
