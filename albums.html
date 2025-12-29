@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Топ-5 альбомов 2025 | The Channel">
+    <meta property="og:image" content="images/og-image.jpg">
+    <title>Топ-5 альбомов 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #000;
+            --bg: #ffffff;
+            --darker: #f8f8f8;
+            --gray: #f0f0f0;
+            --light-gray: #e8e8e8;
+            --text: #1a1a1a;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============ NAVIGATION ============ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            padding-top: 160px;
+            padding-bottom: 120px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            color: var(--text);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+            font-weight: 400;
+        }
+
+        /* ============ MAIN CONTENT ============ */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* ============ ITEMS LIST ============ */
+        .items-list {
+            padding: 80px 40px;
+        }
+
+        .item-full {
+            margin-bottom: 80px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item-full:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .item-rank {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .item-header {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 60px;
+            align-items: flex-start;
+            margin-bottom: 32px;
+        }
+
+        .item-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--gray);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .item-info h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        .item-artist {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .item-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid var(--text);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .link-button:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .item-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-top: 32px;
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            background: var(--darker);
+            padding: 80px 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+
+        .footer-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 14px 40px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .back-button:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-meta {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 24px;
+            }
+
+            nav {
+                gap: 24px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .items-list {
+                padding: 60px 24px;
+            }
+
+            .item-header {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .item-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 12px 0;
+            }
+
+            .nav-container {
+                padding: 0 16px;
+            }
+
+            nav {
+                gap: 16px;
+                font-size: 0.85rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+
+            .hero-container {
+                padding: 0 16px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .items-list {
+                padding: 40px 16px;
+            }
+
+            .item-info h2 {
+                font-size: 1.8rem;
+            }
+
+            .item-full {
+                margin-bottom: 60px;
+                padding-bottom: 60px;
+            }
+
+            footer {
+                padding: 60px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">2025</a>
+            <nav>
+                <a href="albums.html">Альбомы</a>
+                <a href="artists.html">Артисты</a>
+                <a href="index.html#playlist">Плейлист</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>🎵 Топ-5 альбомов 2025</h1>
+            <p class="hero-subtitle">Лучшие альбомы года с полными описаниями</p>
+        </div>
+    </section>
+
+    <!-- ITEMS LIST -->
+    <section class="items-list">
+        <div class="container">
+
+            <!-- ALBUM #1 -->
+            <div class="item-full">
+                <div class="item-rank">#1 Альбом года</div>
+                <div class="item-header">
+                    <div class="item-image">
+                        <img src="images/album1.jpg" alt="Album 1">
+                    </div>
+                    <div class="item-info">
+                        <h2>Album Title 1</h2>
+                        <p class="item-artist">Artist Name</p>
+                        <div class="item-links">
+                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
+                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
+                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                        </div>
+                        <p class="item-description">Подробное описание первого альбома. Расскажите, почему это ваш топ-1 альбом, какие треки вам нравятся больше всего, как долго вы его слушали, какие эмоции он вызывает. Это может быть длинный текст с анализом музыки, стиля и значения этого альбома.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALBUM #2 -->
+            <div class="item-full">
+                <div class="item-rank">#2 Альбом года</div>
+                <div class="item-header">
+                    <div class="item-image">
+                        <img src="images/album2.jpg" alt="Album 2">
+                    </div>
+                    <div class="item-info">
+                        <h2>Album Title 2</h2>
+                        <p class="item-artist">Artist Name</p>
+                        <div class="item-links">
+                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
+                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
+                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                        </div>
+                        <p class="item-description">Подробное описание второго альбома. Расскажите о его особенностях, звучании, стилистике. Какие треки выделяются? Чем он отличается от других релизов этого артиста? Какое место он занимает в вашем рейтинге и почему?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALBUM #3 -->
+            <div class="item-full">
+                <div class="item-rank">#3 Альбом года</div>
+                <div class="item-header">
+                    <div class="item-image">
+                        <img src="images/album3.jpg" alt="Album 3">
+                    </div>
+                    <div class="item-info">
+                        <h2>Album Title 3</h2>
+                        <p class="item-artist">Artist Name</p>
+                        <div class="item-links">
+                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
+                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
+                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                        </div>
+                        <p class="item-description">Подробное описание третьего альбома. Поделитесь своими впечатлениями от этого релиза. Какие треки вам особенно нравятся? Как этот альбом звучит? Какие эмоции он вызывает при прослушивании?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALBUM #4 -->
+            <div class="item-full">
+                <div class="item-rank">#4 Альбом года</div>
+                <div class="item-header">
+                    <div class="item-image">
+                        <img src="images/album4.jpg" alt="Album 4">
+                    </div>
+                    <div class="item-info">
+                        <h2>Album Title 4</h2>
+                        <p class="item-artist">Artist Name</p>
+                        <div class="item-links">
+                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
+                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
+                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                        </div>
+                        <p class="item-description">Подробное описание четвёртого альбома. Почему это отличный релиз? Какие инновации он привнёс? Как он вписывается в контекст музыки 2025 года? Что вам понравилось в этом альбоме?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALBUM #5 -->
+            <div class="item-full">
+                <div class="item-rank">#5 Альбом года</div>
+                <div class="item-header">
+                    <div class="item-image">
+                        <img src="images/album5.jpg" alt="Album 5">
+                    </div>
+                    <div class="item-info">
+                        <h2>Album Title 5</h2>
+                        <p class="item-artist">Artist Name</p>
+                        <div class="item-links">
+                            <a href="https://open.spotify.com/album/ALBUM_ID" target="_blank" class="link-button">Spotify</a>
+                            <a href="https://music.yandex.ru/album/" target="_blank" class="link-button">Яндекс Музыка</a>
+                            <a href="https://music.apple.com/" target="_blank" class="link-button">Apple Music</a>
+                        </div>
+                        <p class="item-description">Подробное описание пятого альбома. Завершите список своими впечатлениями. Почему этот альбом вошёл в топ-5? Какие моменты вам запомнились больше всего? Что вы чувствуете, слушая эту музыку?</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <h2 class="footer-title">Вернуться на главную</h2>
+            <p class="footer-description">Посмотрите статистику, лучший трек года и полный плейлист</p>
+            <div class="footer-buttons">
+                <a href="index.html" class="back-button">На главную</a>
+            </div>
+            <p class="footer-meta">© 2025 Your Channel. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
