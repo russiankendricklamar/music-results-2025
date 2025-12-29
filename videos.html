@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Лучшие клипы 2025 | The Channel">
-    <meta property="og:image" content="images/og-image.jpg">
-    <title>Лучшие клипы 2025</title>
+    <meta property="og:title" content="Клипы 2025 | Не до конца рандомные строчки из песен">
+    <title>Топ клипов 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,11 +19,18 @@
             --primary: #000;
             --bg: #ffffff;
             --darker: #f8f8f8;
-            --gray: #f0f0f0;
-            --light-gray: #e8e8e8;
             --text: #1a1a1a;
             --text-secondary: #666666;
             --border: #e0e0e0;
+        }
+
+        html.dark-mode {
+            --primary: #fff;
+            --bg: #0d0d0d;
+            --darker: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+            --border: #333333;
         }
 
         html {
@@ -37,6 +43,7 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* ============ NAVIGATION ============ */
@@ -47,13 +54,17 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 3px solid var(--primary);
             padding: 16px 0;
+            transition: all 0.3s ease;
+        }
+
+        html.dark-mode header {
+            background: rgba(13, 13, 13, 0.95);
         }
 
         .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            max-width: 100%;
             padding: 0 40px;
             display: flex;
             justify-content: space-between;
@@ -68,9 +79,10 @@
             text-decoration: none;
         }
 
-        nav {
+        .nav-right {
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 30px;
         }
 
         nav a {
@@ -101,25 +113,31 @@
             width: 100%;
         }
 
+        .theme-toggle {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--darker);
+        }
+
         /* ============ HERO ============ */
         .hero {
             padding-top: 160px;
-            padding-bottom: 120px;
+            padding-bottom: 80px;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: -1;
+        html.dark-mode .hero {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
         }
 
         .hero-container {
@@ -127,13 +145,25 @@
             margin: 0 auto;
             padding: 0 40px;
             text-align: center;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 900;
             letter-spacing: -2px;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             line-height: 1.1;
             color: var(--text);
         }
@@ -141,95 +171,227 @@
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 48px;
             font-weight: 400;
         }
 
-        /* ============ MAIN CONTENT ============ */
-        .container {
+        /* ============ CONTENT SECTION ============ */
+        .content-section {
+            padding: 100px 40px;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        /* ============ VIDEOS GRID ============ */
-        .videos-section {
-            padding: 80px 40px;
         }
 
         .videos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 60px;
         }
 
         .video-card {
             background: var(--darker);
-            border-radius: 12px;
-            overflow: hidden;
+            padding: 60px;
+            border-radius: 16px;
             border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
             transition: all 0.3s ease;
         }
+
+        .video-card:nth-child(1) { animation-delay: 0.1s; }
+        .video-card:nth-child(2) { animation-delay: 0.2s; }
+        .video-card:nth-child(3) { animation-delay: 0.3s; }
+        .video-card:nth-child(4) { animation-delay: 0.4s; }
+        .video-card:nth-child(5) { animation-delay: 0.5s; }
+        .video-card:nth-child(6) { animation-delay: 0.6s; }
 
         .video-card:hover {
             border-color: var(--primary);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            transform: translateY(-8px);
+            transform: translateY(-4px);
         }
 
-        .video-iframe {
+        .video-number {
+            position: absolute;
+            font-size: 120px;
+            font-weight: 900;
+            opacity: 0.08;
+            top: -40px;
+            left: 20px;
+            color: var(--primary);
+            z-index: 0;
+        }
+
+        .video-player {
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-thumbnail {
             width: 100%;
             aspect-ratio: 16 / 9;
-            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, #333333 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-thumbnail:hover {
+            transform: scale(1.02);
+        }
+
+        .video-thumbnail.placeholder {
+            background: linear-gradient(135deg, var(--primary) 0%, #333333 100%);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        .play-button {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-thumbnail:hover .play-button {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 30px solid var(--primary);
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            margin-left: 8px;
         }
 
         .video-info {
-            padding: 24px;
+            position: relative;
+        }
+
+        .video-rank {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--primary);
+            color: var(--bg);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
 
         .video-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text);
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
         .video-artist {
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            margin-bottom: 16px;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 30px;
         }
 
         .video-description {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            line-height: 1.8;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
+        .video-meta {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta-item {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ============ VIDEO LINK ============ */
         .video-link {
             display: inline-block;
-            padding: 10px 20px;
-            border: 1px solid var(--primary);
-            color: var(--primary);
+            padding: 12px 24px;
+            background: var(--primary);
+            color: var(--bg);
             text-decoration: none;
-            font-size: 0.9rem;
+            border-radius: 50px;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            border-radius: 4px;
+            border: 2px solid var(--primary);
         }
 
         .video-link:hover {
-            background: var(--primary);
-            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ============ IMAGE UPLOAD ============ */
+        .image-upload-hint {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        html.dark-mode .image-upload-hint {
+            background: rgba(255, 255, 255, 0.05);
         }
 
         /* ============ FOOTER ============ */
         footer {
             background: var(--darker);
             padding: 80px 40px;
-            border-top: 1px solid var(--border);
+            border-top: 3px solid var(--primary);
             text-align: center;
         }
 
@@ -243,7 +405,6 @@
             font-weight: 900;
             margin-bottom: 24px;
             letter-spacing: -1px;
-            color: var(--text);
         }
 
         .footer-description {
@@ -260,14 +421,14 @@
             justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
-        .back-button {
+        .telegram-btn {
             display: inline-block;
             padding: 14px 40px;
             background: var(--primary);
-            color: white;
+            color: var(--bg);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
@@ -276,9 +437,28 @@
             border: 2px solid var(--primary);
         }
 
-        .back-button:hover {
+        .telegram-btn:hover {
             background: transparent;
             color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .spotify-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .spotify-btn:hover {
+            background: var(--primary);
+            color: var(--bg);
             transform: translateY(-2px);
         }
 
@@ -296,20 +476,22 @@
                 padding: 0 24px;
             }
 
-            nav {
-                gap: 24px;
+            .hero-container {
+                padding: 0 24px;
             }
 
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
 
-            .videos-section {
+            .content-section {
                 padding: 60px 24px;
             }
 
-            .videos-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            .video-card {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 40px;
             }
         }
 
@@ -323,8 +505,7 @@
             }
 
             nav {
-                gap: 16px;
-                font-size: 0.85rem;
+                display: none;
             }
 
             .logo {
@@ -344,16 +525,50 @@
                 font-size: 2rem;
             }
 
-            .videos-section {
+            .content-section {
                 padding: 40px 16px;
             }
 
-            .videos-grid {
+            .video-card {
                 grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+
+            .video-thumbnail {
+                font-size: 40px;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-icon {
+                border-left: 22px solid var(--primary);
+                border-top: 15px solid transparent;
+                border-bottom: 15px solid transparent;
+                margin-left: 6px;
+            }
+
+            .video-title {
+                font-size: 1.5rem;
+            }
+
+            .video-number {
+                font-size: 80px;
+            }
+
+            .videos-grid {
+                gap: 40px;
             }
 
             footer {
                 padding: 60px 16px;
+            }
+
+            .footer-title {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -363,94 +578,261 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">2025</a>
-            <nav>
-                <a href="albums.html">Альбомы</a>
-                <a href="artists.html">Артисты</a>
-                <a href="discoveries.html">Открытия</a>
-                <a href="videos.html">Клипы</a>
-            </nav>
+            <div class="nav-right">
+                <nav>
+                    <a href="index.html">На главную</a>
+                    <a href="albums.html">Альбомы</a>
+                    <a href="artists.html">Артисты</a>
+                    <a href="discoveries.html">Открытия</a>
+                </nav>
+                <button class="theme-toggle" id="themeToggle" title="Переключить режим">🌙</button>
+            </div>
         </div>
     </header>
 
     <!-- HERO -->
     <section class="hero">
         <div class="hero-container">
-            <h1>🎬 Лучшие клипы 2025</h1>
+            <h1>Топ клипов 2025</h1>
             <p class="hero-subtitle">Музыкальные видео, которые поразили нас в этом году</p>
         </div>
     </section>
 
-    <!-- VIDEOS GRID -->
-    <section class="videos-section">
-        <div class="container">
-            <div class="videos-grid">
-
-                <!-- VIDEO 1 -->
-                <div class="video-card">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-                    <div class="video-info">
-                        <h3 class="video-title">Video Title 1</h3>
-                        <p class="video-artist">Artist Name</p>
-                        <p class="video-description">Краткое описание клипа. Что в нём поразило? Почему это один из лучших видео года?</p>
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_1" target="_blank" class="video-link">Смотреть на YouTube →</a>
+    <!-- CONTENT -->
+    <section class="content-section">
+        <div class="videos-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-number">01</div>
+                <div class="video-player">
+                    <div class="video-thumbnail placeholder" id="thumbnail1" style="background-image: url('images/video1.jpg')">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- VIDEO 2 -->
-                <div class="video-card">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-                    <div class="video-info">
-                        <h3 class="video-title">Video Title 2</h3>
-                        <p class="video-artist">Artist Name</p>
-                        <p class="video-description">Описание клипа. Режиссёрская работа, визуальный стиль, история в видео.</p>
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_2" target="_blank" class="video-link">Смотреть на YouTube →</a>
+                <div class="video-info">
+                    <span class="video-rank">№1 Клип года</span>
+                    <h3 class="video-title">Track Title 1</h3>
+                    <p class="video-artist">Artist Name</p>
+                    <p class="video-description">
+                        Краткое описание клипа. Что в нём поразило? Почему это один из лучших видео года? Какой режиссер снимал? Какова концепция клипа? Какие визуальные элементы запомнились больше всего? Как артист выглядит в видео?
+                    </p>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Режиссер</div>
+                            <div class="meta-value">Director Name</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Просмотры</div>
+                            <div class="meta-value">5M+</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Track+Title+1" target="_blank" class="video-link">Смотреть на YouTube</a>
+                    <div class="image-upload-hint">
+                        💡 Превью подгружается из папки <code>images/video1.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
+            </div>
 
-                <!-- VIDEO 3 -->
-                <div class="video-card">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-                    <div class="video-info">
-                        <h3 class="video-title">Video Title 3</h3>
-                        <p class="video-artist">Artist Name</p>
-                        <p class="video-description">Почему этот клип вошёл в лучшие? Какие сцены вам понравились больше всего?</p>
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_3" target="_blank" class="video-link">Смотреть на YouTube →</a>
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-number">02</div>
+                <div class="video-player">
+                    <div class="video-thumbnail placeholder" id="thumbnail2" style="background-image: url('images/video2.jpg')">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- VIDEO 4 -->
-                <div class="video-card">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-                    <div class="video-info">
-                        <h3 class="video-title">Video Title 4</h3>
-                        <p class="video-artist">Artist Name</p>
-                        <p class="video-description">Описание четвёртого клипа. Что делает его особенным среди других видео?</p>
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_4" target="_blank" class="video-link">Смотреть на YouTube →</a>
+                <div class="video-info">
+                    <span class="video-rank">№2 Клип года</span>
+                    <h3 class="video-title">Track Title 2</h3>
+                    <p class="video-artist">Artist Name</p>
+                    <p class="video-description">
+                        Описание клипа. Режиссёрская работа, визуальный стиль, история в видео. Какой сюжет развивается в клипе? Какие эмоции он вызывает? Какие сцены наиболее впечатляющие? Как музыка и видео дополняют друг друга?
+                    </p>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Режиссер</div>
+                            <div class="meta-value">Director Name</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Просмотры</div>
+                            <div class="meta-value">4M+</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Track+Title+2" target="_blank" class="video-link">Смотреть на YouTube</a>
+                    <div class="image-upload-hint">
+                        💡 Превью подгружается из папки <code>images/video2.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
+            </div>
 
-                <!-- VIDEO 5 -->
-                <div class="video-card">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/VIDEO_ID_5" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-                    <div class="video-info">
-                        <h3 class="video-title">Video Title 5</h3>
-                        <p class="video-artist">Artist Name</p>
-                        <p class="video-description">Пятый клип в нашем списке лучших. Его визуальный стиль и творческий замысел.</p>
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_5" target="_blank" class="video-link">Смотреть на YouTube →</a>
+            <!-- Video 3 -->
+            <div class="video-card">
+                <div class="video-number">03</div>
+                <div class="video-player">
+                    <div class="video-thumbnail placeholder" id="thumbnail3" style="background-image: url('images/video3.jpg')">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- VIDEO 6 -->
-                <div class="video-card">
-                    <iframe class="video-iframe" src="https://www.youtube.com/embed/VIDEO_ID_6" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-                    <div class="video-info">
-                        <h3 class="video-title">Video Title 6</h3>
-                        <p class="video-artist">Artist Name</p>
-                        <p class="video-description">Завершает наш список один из самых креативных клипов года. Вот почему он здесь.</p>
-                        <a href="https://www.youtube.com/watch?v=VIDEO_ID_6" target="_blank" class="video-link">Смотреть на YouTube →</a>
+                <div class="video-info">
+                    <span class="video-rank">№3 Клип года</span>
+                    <h3 class="video-title">Track Title 3</h3>
+                    <p class="video-artist">Artist Name</p>
+                    <p class="video-description">
+                        Почему этот клип вошёл в лучшие? Какие сцены вам понравились больше всего? Какова общая атмосфера видео? Какие спецэффекты используются? Как режиссер воплотил замысел артиста в видео? Какой жанр видео?
+                    </p>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Режиссер</div>
+                            <div class="meta-value">Director Name</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Просмотры</div>
+                            <div class="meta-value">3.5M+</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Track+Title+3" target="_blank" class="video-link">Смотреть на YouTube</a>
+                    <div class="image-upload-hint">
+                        💡 Превью подгружается из папки <code>images/video3.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
                     </div>
                 </div>
+            </div>
 
+            <!-- Video 4 -->
+            <div class="video-card">
+                <div class="video-number">04</div>
+                <div class="video-player">
+                    <div class="video-thumbnail placeholder" id="thumbnail4" style="background-image: url('images/video4.jpg')">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <span class="video-rank">№4 Клип года</span>
+                    <h3 class="video-title">Track Title 4</h3>
+                    <p class="video-artist">Artist Name</p>
+                    <p class="video-description">
+                        Описание четвёртого клипа. Что делает его особенным среди других видео? Какая идея лежит в основе концепции? Как артист и режиссер работали вместе? Какие локации использовались? Какие визуальные эффекты поражают?
+                    </p>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Режиссер</div>
+                            <div class="meta-value">Director Name</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Просмотры</div>
+                            <div class="meta-value">3M+</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Track+Title+4" target="_blank" class="video-link">Смотреть на YouTube</a>
+                    <div class="image-upload-hint">
+                        💡 Превью подгружается из папки <code>images/video4.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="video-card">
+                <div class="video-number">05</div>
+                <div class="video-player">
+                    <div class="video-thumbnail placeholder" id="thumbnail5" style="background-image: url('images/video5.jpg')">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <span class="video-rank">№5 Клип года</span>
+                    <h3 class="video-title">Track Title 5</h3>
+                    <p class="video-artist">Artist Name</p>
+                    <p class="video-description">
+                        Пятый клип в нашем списке лучших. Его визуальный стиль и творческий замысел. Как видео отличается от других? Какие инновации в съёмке и обработке использованы? Какие кадры остаются в памяти? Как видео дополняет песню?
+                    </p>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Режиссер</div>
+                            <div class="meta-value">Director Name</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Просмотры</div>
+                            <div class="meta-value">2.8M+</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Track+Title+5" target="_blank" class="video-link">Смотреть на YouTube</a>
+                    <div class="image-upload-hint">
+                        💡 Превью подгружается из папки <code>images/video5.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="video-card">
+                <div class="video-number">06</div>
+                <div class="video-player">
+                    <div class="video-thumbnail placeholder" id="thumbnail6" style="background-image: url('images/video6.jpg')">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <span class="video-rank">№6 Клип года</span>
+                    <h3 class="video-title">Track Title 6</h3>
+                    <p class="video-artist">Artist Name</p>
+                    <p class="video-description">
+                        Завершает наш список один из самых креативных клипов года. Вот почему он здесь. Какие уникальные решения использованы в видео? Как режиссер подошёл к интерпретации песни? Какие элементы делают видео запоминающимся? Какую историю оно рассказывает?
+                    </p>
+                    <div class="video-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Режиссер</div>
+                            <div class="meta-value">Director Name</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Дата выхода</div>
+                            <div class="meta-value">2025</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Просмотры</div>
+                            <div class="meta-value">2.5M+</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/results?search_query=Track+Title+6" target="_blank" class="video-link">Смотреть на YouTube</a>
+                    <div class="image-upload-hint">
+                        💡 Превью подгружается из папки <code>images/video6.jpg</code><br>
+                        Просто загрузите файл в папку <code>images/</code> репозитория
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -458,13 +840,58 @@
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <h2 class="footer-title">Вернуться на главную</h2>
-            <p class="footer-description">Посмотрите музыкальные итоги года и топ артистов</p>
+            <h2 class="footer-title">Присоединяйтесь</h2>
+            <p class="footer-description">Подпишитесь на канал "Не до конца рандомные строчки из песен", чтобы не пропустить музыкальные рекомендации и новые открытия</p>
             <div class="footer-buttons">
-                <a href="index.html" class="back-button">На главную</a>
+                <a href="https://t.me/your_channel_name" target="_blank" class="telegram-btn">Telegram</a>
+                <a href="https://open.spotify.com/user/YOUR_SPOTIFY_ID" target="_blank" class="spotify-btn">Spotify Profile</a>
             </div>
-            <p class="footer-meta">© 2025 Your Channel. Все права защищены.</p>
+            <p class="footer-meta">© 2025 Не до конца рандомные строчки из песен. Все права защищены.</p>
         </div>
     </footer>
+
+    <script>
+        // ============ DARK MODE ============
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark-mode');
+            const isDark = html.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+
+        // ============ IMAGE LOADING ============
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            const bgImage = thumbnail.style.backgroundImage;
+            const img = new Image();
+            img.onload = () => {
+                thumbnail.classList.remove('placeholder');
+            };
+            img.onerror = () => {
+                thumbnail.classList.add('placeholder');
+            };
+            if (bgImage) {
+                img.src = bgImage.slice(5, -2);
+            }
+        });
+
+        // ============ VIDEO CLICKS ============
+        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const videoLink = this.closest('.video-card').querySelector('.video-link');
+                if (videoLink) {
+                    window.open(videoLink.href, '_blank');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
