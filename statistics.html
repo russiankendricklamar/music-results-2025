@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="Статистика 2025 | Russian Kendrick Lamar">
+    <meta property="og:title" content="Статистика 2025 | Не до конца рандомные строчки из песен">
     <meta property="og:image" content="images/og-image.jpg">
     <title>Детальная статистика 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +56,7 @@
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 3px solid var(--primary);
             padding: 16px 0;
             transition: all 0.3s ease;
         }
@@ -88,18 +88,12 @@
             gap: 30px;
         }
 
-        nav {
-            display: flex;
-            gap: 40px;
-        }
-
         nav a {
             font-size: 0.95rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         nav a:hover {
@@ -123,7 +117,7 @@
         /* ============ HERO ============ */
         .hero {
             padding-top: 160px;
-            padding-bottom: 100px;
+            padding-bottom: 80px;
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, transparent 100%);
             position: relative;
             overflow: hidden;
@@ -164,9 +158,7 @@
 
         /* ============ CHARTS SECTION ============ */
         .charts-section {
-            padding: 100px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
+            padding: 0;
         }
 
         .section-title {
@@ -174,20 +166,17 @@
             font-weight: 900;
             margin-bottom: 60px;
             text-align: center;
-        }
-
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 40px;
-            margin-bottom: 80px;
+            padding: 100px 40px 0 40px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .chart-container {
+            width: 100%;
             background: var(--darker);
             padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
         }
@@ -199,10 +188,17 @@
         .chart-container:nth-child(5) { animation-delay: 0.5s; }
         .chart-container:nth-child(6) { animation-delay: 0.6s; }
 
+        .chart-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
         .chart-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 30px;
+            text-align: center;
         }
 
         canvas {
@@ -210,6 +206,13 @@
         }
 
         /* ============ BACK BUTTON ============ */
+        .back-button-section {
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         .back-button {
             display: inline-block;
             padding: 14px 40px;
@@ -221,7 +224,6 @@
             font-size: 0.95rem;
             transition: all 0.3s ease;
             border: 2px solid var(--primary);
-            margin-top: 20px;
         }
 
         .back-button:hover {
@@ -233,9 +235,9 @@
         footer {
             background: var(--darker);
             padding: 60px 40px;
-            border-top: 1px solid var(--border);
+            border-top: 3px solid var(--primary);
             text-align: center;
-            margin-top: 80px;
+            margin-top: 0;
         }
 
         .footer-content {
@@ -265,12 +267,8 @@
                 font-size: 2.5rem;
             }
 
-            .charts-section {
-                padding: 60px 24px;
-            }
-
-            .charts-grid {
-                grid-template-columns: 1fr;
+            .chart-inner {
+                padding: 0 24px;
             }
         }
 
@@ -281,12 +279,6 @@
 
             .nav-container {
                 padding: 0 16px;
-            }
-
-            nav {
-                gap: 16px;
-                font-size: 0.85rem;
-                display: none;
             }
 
             .logo {
@@ -306,22 +298,27 @@
                 font-size: 2rem;
             }
 
-            .charts-section {
-                padding: 40px 16px;
-            }
-
             .section-title {
+                padding: 60px 16px 0 16px;
                 font-size: 1.5rem;
                 margin-bottom: 40px;
             }
 
             .chart-container {
-                padding: 20px;
+                padding: 30px 16px;
+            }
+
+            .chart-inner {
+                padding: 0;
             }
 
             .chart-title {
                 font-size: 1.1rem;
                 margin-bottom: 20px;
+            }
+
+            .back-button-section {
+                padding: 40px 16px;
             }
         }
     </style>
@@ -351,39 +348,50 @@
     <!-- CHARTS SECTION -->
     <section class="charts-section">
         <h2 class="section-title">Графики и метрики</h2>
-        <div class="charts-grid">
-            <!-- Chart 1: Monthly Listening -->
-            <div class="chart-container">
+
+        <!-- Chart 1 -->
+        <div class="chart-container">
+            <div class="chart-inner">
                 <h3 class="chart-title">Слушаемость по месяцам</h3>
                 <canvas id="monthChart"></canvas>
             </div>
+        </div>
 
-            <!-- Chart 2: Top Genres -->
-            <div class="chart-container">
+        <!-- Chart 2 -->
+        <div class="chart-container">
+            <div class="chart-inner">
                 <h3 class="chart-title">Топ жанры</h3>
                 <canvas id="genreChart"></canvas>
             </div>
+        </div>
 
-            <!-- Chart 3: Listening Hours -->
-            <div class="chart-container">
+        <!-- Chart 3 -->
+        <div class="chart-container">
+            <div class="chart-inner">
                 <h3 class="chart-title">Слушания по часам дня</h3>
                 <canvas id="hoursChart"></canvas>
             </div>
+        </div>
 
-            <!-- Chart 4: Weekly Activity -->
-            <div class="chart-container">
+        <!-- Chart 4 -->
+        <div class="chart-container">
+            <div class="chart-inner">
                 <h3 class="chart-title">Активность по дням недели</h3>
                 <canvas id="weekChart"></canvas>
             </div>
+        </div>
 
-            <!-- Chart 5: Top Artists -->
-            <div class="chart-container">
+        <!-- Chart 5 -->
+        <div class="chart-container">
+            <div class="chart-inner">
                 <h3 class="chart-title">Топ-10 артистов</h3>
                 <canvas id="artistsChart"></canvas>
             </div>
+        </div>
 
-            <!-- Chart 6: Listening Habits -->
-            <div class="chart-container">
+        <!-- Chart 6 -->
+        <div class="chart-container">
+            <div class="chart-inner">
                 <h3 class="chart-title">Распределение прослушиваний</h3>
                 <canvas id="habitsChart"></canvas>
             </div>
@@ -391,14 +399,14 @@
     </section>
 
     <!-- BACK BUTTON -->
-    <section style="text-align: center; padding: 40px; max-width: 1400px; margin: 0 auto;">
+    <div class="back-button-section">
         <a href="index.html" class="back-button">← Вернуться на главную</a>
-    </section>
+    </div>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <p class="footer-meta">© 2025 Russian Kendrick Lamar. Все права защищены.</p>
+            <p class="footer-meta">© 2025 Не до конца рандомные строчки из песен. Все права защищены.</p>
         </div>
     </footer>
 
@@ -514,7 +522,6 @@
 
         // Chart 5: Top Artists
         new Chart(document.getElementById('artistsChart'), {
-            type: 'horizontalBar',
             type: 'bar',
             data: {
                 labels: ['Kendrick', 'Tyler', 'Frank', 'Ye', 'J Cole', 'Drake', 'Travis', 'Playboi', 'Thug', 'Juice'],
