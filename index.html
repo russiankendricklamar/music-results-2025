@@ -1394,17 +1394,6 @@
                 }
             });
         }
-        
-        // Инициализировать при загрузке
-        document.addEventListener('DOMContentLoaded', initCharts);
-        
-        // При смене темы
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            const html = document.documentElement;
-            html.classList.toggle('dark-mode');
-            localStorage.setItem('theme', html.classList.contains('dark-mode') ? 'dark' : 'light');
-            initCharts();  // ← пересоздать графики
-        });
 
         // ============ YEAR SELECTOR ============
         const yearBtns = document.querySelectorAll('.year-btn');
