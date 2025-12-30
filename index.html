@@ -1233,15 +1233,22 @@
 
         // ============ YEAR SELECTOR ============
         const yearBtns = document.querySelectorAll('.year-btn');
+
         yearBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const year = btn.dataset.year;
+
                 yearBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const contents = document.querySelectorAll('.year-content');
                 contents.forEach(c => c.classList.remove('active'));
-                document.querySelector(`[data-year="${year}"]`).classList.add('active');
+
+                // ВАЖНО: уточняем селектор
+                const target = document.querySelector(`.year-content[data-year="${year}"]`);
+                if (target) {
+                    target.classList.add('active');
+                }
             });
         });
 
