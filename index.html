@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="2025 Год в музыке | Не до конца рандомные строчки из песен">
@@ -10,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -471,36 +471,52 @@
             letter-spacing: 1px;
         }
 
-        .music-timer-chart {
-            padding: 80px 40px;
-            background: var(--darker);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+        .charts-section {
+            padding: 0;
         }
-        
-        .chart-title {
-            font-size: 1.8rem;
+
+        .section-title {
+            font-size: 2rem;
             font-weight: 900;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             text-align: center;
-            color: var(--text);
-            white-space: normal;  
-            word-spacing: normal;
-            letter-spacing: -0.02em;
+            padding: 100px 40px 0 40px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        #monthChart {
-            width: 100% !important;
-            height: 450px !important;  
-            display: block;
-            max-width: 100%;
-        }
-        
+
         .chart-container {
-            max-width: 1200px;
-            margin: 0 auto;
             width: 100%;
-            padding: 0 20px;
+            background: var(--darker);
+            padding: 40px;
+            border-bottom: 1px solid var(--border);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .chart-container:nth-child(1) { animation-delay: 0.1s; }
+        .chart-container:nth-child(2) { animation-delay: 0.2s; }
+        .chart-container:nth-child(3) { animation-delay: 0.3s; }
+        .chart-container:nth-child(4) { animation-delay: 0.4s; }
+        .chart-container:nth-child(5) { animation-delay: 0.5s; }
+        .chart-container:nth-child(6) { animation-delay: 0.6s; }
+
+        .chart-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        canvas {
+            max-width: 100%;
         }
 
         /* ============ CTA SECTION ============ */
@@ -1056,8 +1072,10 @@
     
     <section class="music-timer-chart">
         <div class="chart-container">
-            <h2 class="chart-title">Музыкальный таймер по месяцам (мин.)</h2>
-            <canvas id="monthChart"></canvas>
+            <div class="chart-inner">
+                <h3 class="chart-title">Музыкальный таймер по месяцам (мин.)</h3>
+                <canvas id="monthChart"></canvas>
+            </div>
         </div>
     </section>
 
@@ -1288,58 +1306,37 @@
         }
 
         // Chart.js - Monthly Listening Timer
-        setTimeout(() => {
-            const html = document.documentElement;
-            const isDark = html.classList.contains('dark-mode');
-            const textColor = isDark ? '#aaaaaa' : '#666666';
-            const gridColor = isDark ? '#333333' : '#e0e0e0';
-            const bgColor = isDark ? '#1a1a1a' : '#ffffff';
-        
-            // Chart 1: Monthly Listening
-            new Chart(document.getElementById('monthChart'), {
-                type: 'line',
-                data: {
-                    labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
-                    datasets: [{
-                        label: 'Минут',
-                        data: [5247, 5566, 6308, 8243, 7195, 6526, 5598, 4207, 3312, 3962, 5964, 6898],
-                        borderColor: '#000',
-                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4,
-                        pointRadius: 5,
-                        pointBackgroundColor: '#000'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: { 
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: { 
-                            ticks: { 
-                                color: textColor,
-                                font: { size: 12 }
-                            },
-                            grid: { color: gridColor },
-                            beginAtZero: true
-                        },
-                        x: { 
-                            ticks: { 
-                                color: textColor,
-                                font: { size: 12 },
-                                maxRotation: 0,  // горизонтальные текст
-                                minRotation: 0
-                            },
-                            grid: { color: gridColor }
-                        }
-                    }
+        const isDark = html.classList.contains('dark-mode');
+        const textColor = isDark ? '#aaaaaa' : '#666666';
+        const gridColor = isDark ? '#333333' : '#e0e0e0';
+        const bgColor = isDark ? '#1a1a1a' : '#ffffff';
+
+        // Chart 1: Monthly Listening
+        new Chart(document.getElementById('monthChart'), {
+            type: 'line',
+            data: {
+                labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+                datasets: [{
+                    label: 'Минут',
+                    data: [5247, 5566, 6308, 8243, 7195, 6526, 5598, 4207, 3312, 3962, 5964, 6898],
+                    borderColor: '#000',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#000'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true },
+                    x: { ticks: { color: textColor }, grid: { color: gridColor } }
                 }
-            });
-        }, 200);
+            }
+        });
 
         // ============ YEAR SELECTOR ============
         const yearBtns = document.querySelectorAll('.year-btn');
