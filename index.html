@@ -1321,13 +1321,21 @@
                     },
                     scales: {
                         y: { 
-                            ticks: { color: textColor }, 
-                            grid: { color: gridColor }, 
+                            ticks: { 
+                                color: textColor,
+                                font: { size: 12 }
+                            },
+                            grid: { color: gridColor },
                             beginAtZero: true
                         },
                         x: { 
-                            ticks: { color: textColor }, 
-                            grid: { color: gridColor } 
+                            ticks: { 
+                                color: textColor,
+                                font: { size: 12 },
+                                maxRotation: 0,  // горизонтальные текст
+                                minRotation: 0
+                            },
+                            grid: { color: gridColor }
                         }
                     }
                 }
