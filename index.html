@@ -1287,37 +1287,51 @@
             });
         }
 
-        const isDark = html.classList.contains('dark-mode');
-        const textColor = isDark ? '#aaaaaa' : '#666666';
-        const gridColor = isDark ? '#333333' : '#e0e0e0';
-        const bgColor = isDark ? '#1a1a1a' : '#ffffff';
-
-        // Chart 1: Monthly Listening
-        new Chart(document.getElementById('monthChart'), {
-            type: 'line',
-            data: {
-                labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
-                datasets: [{
-                    label: 'Минут',
-                    data: [5247, 5566, 6308, 8243, 7195, 6526, 5598, 4207, 3312, 3962, 5964, 6898],
-                    borderColor: '#000',
-                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 5,
-                    pointBackgroundColor: '#000'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { ticks: { color: textColor }, grid: { color: gridColor }, beginAtZero: true },
-                    x: { ticks: { color: textColor }, grid: { color: gridColor } }
+        // Chart.js - Monthly Listening Timer
+        setTimeout(() => {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark-mode');
+            const textColor = isDark ? '#aaaaaa' : '#666666';
+            const gridColor = isDark ? '#333333' : '#e0e0e0';
+            const bgColor = isDark ? '#1a1a1a' : '#ffffff';
+        
+            // Chart 1: Monthly Listening
+            new Chart(document.getElementById('monthChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+                    datasets: [{
+                        label: 'Минут',
+                        data: [5247, 5566, 6308, 8243, 7195, 6526, 5598, 4207, 3312, 3962, 5964, 6898],
+                        borderColor: '#000',
+                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 5,
+                        pointBackgroundColor: '#000'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: { 
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { 
+                            ticks: { color: textColor }, 
+                            grid: { color: gridColor }, 
+                            beginAtZero: true
+                        },
+                        x: { 
+                            ticks: { color: textColor }, 
+                            grid: { color: gridColor } 
+                        }
+                    }
                 }
-            }
-        });
+            });
+        }, 200);
 
         // ============ YEAR SELECTOR ============
         const yearBtns = document.querySelectorAll('.year-btn');
