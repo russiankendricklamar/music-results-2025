@@ -1088,6 +1088,18 @@
                 <canvas id="monthChart"></canvas>
             </div>
         </div>
+        <div class="chart-container">
+            <div class="chart-inner">
+                <h3 class="chart-title">Музыкальный таймер по месяцам (мин.)</h3>
+                <canvas id="artistsChart"></canvas>
+            </div>
+        </div>
+        <div class="chart-container">
+            <div class="chart-inner">
+                <h3 class="chart-title">Музыкальный таймер по месяцам (мин.)</h3>
+                <canvas id="tracksChart"></canvas>
+            </div>
+        </div>
     </section>
 
     <!-- CTA SECTION: SUMMARIES -->
@@ -1340,6 +1352,142 @@
                     datasets: [{
                         label: 'Минут',
                         data: [5247, 5566, 6308, 8243, 7195, 6526, 5598, 4207, 3312, 3962, 5964, 6898],
+                        borderColor: lineColor,
+                        backgroundColor: bgColor,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: pointColor,
+                        pointBorderColor: isDark ? '#1a1a1a' : '#ffffff',
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: isDark ? '#1a1a1a' : '#ffffff',
+                        pointHoverBorderColor: lineColor
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: isDark ? '#333333' : '#ffffff',
+                            titleColor: isDark ? '#ffffff' : '#000000',
+                            bodyColor: isDark ? '#aaaaaa' : '#666666',
+                            borderColor: isDark ? '#555555' : '#cccccc',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString('ru-RU') + ' минут';
+                                },
+                                afterLabel: function(context) {
+                                    const max = Math.max(...context.chart.data.datasets[0].data);
+                                    const percent = ((context.parsed.y / max) * 100).toFixed(0);
+                                    return percent + '% от максимума';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { color: textColor, font: { size: 12 } },
+                            grid: { color: gridColor },
+                            beginAtZero: true
+                        },
+                        x: {
+                            ticks: { color: textColor, font: { size: 12 } },
+                            grid: { color: gridColor }
+                        }
+                    }
+                }
+            });
+
+            charts.artistsChart = new Chart(document.getElementById('artistsChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+                    datasets: [{
+                        label: 'Исполнителей',
+                        data: [266, 264, 170, 235, 335, 298, 373, 288, 183, 96, 156, 199],
+                        borderColor: lineColor,
+                        backgroundColor: bgColor,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: pointColor,
+                        pointBorderColor: isDark ? '#1a1a1a' : '#ffffff',
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 8,
+                        pointHoverBackgroundColor: isDark ? '#1a1a1a' : '#ffffff',
+                        pointHoverBorderColor: lineColor
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: isDark ? '#333333' : '#ffffff',
+                            titleColor: isDark ? '#ffffff' : '#000000',
+                            bodyColor: isDark ? '#aaaaaa' : '#666666',
+                            borderColor: isDark ? '#555555' : '#cccccc',
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString('ru-RU') + ' минут';
+                                },
+                                afterLabel: function(context) {
+                                    const max = Math.max(...context.chart.data.datasets[0].data);
+                                    const percent = ((context.parsed.y / max) * 100).toFixed(0);
+                                    return percent + '% от максимума';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { color: textColor, font: { size: 12 } },
+                            grid: { color: gridColor },
+                            beginAtZero: true
+                        },
+                        x: {
+                            ticks: { color: textColor, font: { size: 12 } },
+                            grid: { color: gridColor }
+                        }
+                    }
+                }
+            });
+
+            charts.tracksChart = new Chart(document.getElementById('tracksChart'), {
+                type: 'line',
+                data: {
+                    labels: ['Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+                    datasets: [{
+                        label: 'Минут',
+                        data: [337, 480, 368, 472, 712, 617, 690, 523, 308, 150, 353, 482],
                         borderColor: lineColor,
                         backgroundColor: bgColor,
                         borderWidth: 3,
