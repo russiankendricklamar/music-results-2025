@@ -642,39 +642,48 @@
                 font-size: 1.8rem;
             }
 
-        @media (prefers-color-scheme: light) {
-            .hero-section p {
-                color: #333333;  /* Тёмный серый вместо светлого */
+        /* Fix text color in light mode for hero sections */
+            @media (prefers-color-scheme: light) {
+                .hero-section p {
+                    color: #333333 !important;
+                }
+            
+                .hero-section h3 {
+                    color: #000000 !important;
+                }
+            
+                .hero-intro {
+                    color: #2c2c2c !important;
+                }
+            
+                .hero-main-text {
+                    color: #333333 !important;
+                }
+            
+                .hero-subtitle {
+                    color: #666666 !important;
+                }
             }
-        
-            .hero-section h3 {
-                color: #000000;  /* Чёрный заголовок */
+            
+            /* Fix for data-color-scheme light */
+            [data-color-scheme="light"] .hero-section p {
+                color: #333333 !important;
             }
-        
-            .hero-intro {
-                color: #2c2c2c;  /* Тёмный текст для интро */
+            
+            [data-color-scheme="light"] .hero-section h3 {
+                color: #000000 !important;
             }
-        
-            .hero-main-text {
-                color: #333333;  /* Тёмный текст */
+            
+            [data-color-scheme="light"] .hero-intro {
+                color: #2c2c2c !important;
             }
-        
-            /* Dark mode */
-        @media (prefers-color-scheme: dark) {
-            .hero-section p {
-                color: #b8b8b8;  /* Светлый серый */
+            
+            [data-color-scheme="light"] .hero-main-text {
+                color: #333333 !important;
             }
-        
-            .hero-section h3 {
-                color: #ffffff;  /* Белый заголовок */
-            }
-        
-            .hero-intro {
-                color: #d0d0d0;
-            }
-        
-            .hero-main-text {
-                color: #d0d0d0;
+            
+            [data-color-scheme="light"] .hero-subtitle {
+                color: #666666 !important;
             }
         }
     </style>
