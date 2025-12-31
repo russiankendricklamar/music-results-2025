@@ -666,6 +666,42 @@
             .footer-title {
                 font-size: 1.8rem;
             }
+
+            @media (prefers-color-scheme: light) {
+            .hero-section p {
+                color: #333333;  /* Тёмный серый вместо светлого */
+            }
+        
+            .hero-section h3 {
+                color: #000000;  /* Чёрный заголовок */
+            }
+        
+            .hero-intro {
+                color: #2c2c2c;  /* Тёмный текст для интро */
+            }
+        
+            .hero-main-text {
+                color: #333333;  /* Тёмный текст */
+            }
+        }
+        
+        /* Dark mode */
+        @media (prefers-color-scheme: dark) {
+            .hero-section p {
+                color: #b8b8b8;  /* Светлый серый */
+            }
+        
+            .hero-section h3 {
+                color: #ffffff;  /* Белый заголовок */
+            }
+        
+            .hero-intro {
+                color: #d0d0d0;
+            }
+        
+            .hero-main-text {
+                color: #d0d0d0;
+            }
         }
     </style>
 </head>
