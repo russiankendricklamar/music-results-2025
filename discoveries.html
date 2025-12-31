@@ -405,24 +405,25 @@
         /* ============ SIDE VIDEO PANEL ============ */
         .video-sidebar {
             position: fixed;
-            right: -500px;
-            top: 0;
-            width: 500px;
-            height: 100vh;
+            right: 20px;
+            bottom: 20px;
+            width: 420px;
+            height: auto;
             background: var(--darker);
-            border-left: 3px solid var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 16px;
             z-index: 999;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
-            padding: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: visible;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            padding: 0;
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
 
         .video-sidebar.active {
-            right: 0;
+            opacity: 1;
+            pointer-events: auto;
         }
 
         html.dark-mode .video-sidebar {
@@ -430,19 +431,22 @@
         }
 
         .video-sidebar-close {
-            align-self: flex-end;
+            position: absolute;
+            top: 12px;
+            right: 12px;
             background: var(--primary);
             color: var(--bg);
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            font-size: 28px;
+            font-size: 24px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            z-index: 10;
         }
 
         .video-sidebar-close:hover {
@@ -453,7 +457,7 @@
         .video-player {
             width: 100%;
             aspect-ratio: 16 / 9;
-            border-radius: 12px;
+            border-radius: 12px 12px 0 0;
             overflow: hidden;
         }
 
@@ -461,31 +465,32 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            background: #000;
         }
 
         .video-player iframe {
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 12px;
         }
 
         .video-info-panel {
-            padding-top: 20px;
+            padding: 16px;
             border-top: 1px solid var(--border);
+            background: var(--darker);
         }
 
         .video-info-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
             color: var(--text);
         }
 
         .video-info-text {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
         /* ============ OVERLAY (затемнение фона) ============ */
