@@ -365,7 +365,7 @@
 
         /* ============ VIDEO BUTTON (для первого) ============ */
         .video-btn {
-            /* display: inline-flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 12px 20px;
@@ -379,21 +379,6 @@
             transition: all 0.3s ease;
             border: 2px solid var(--primary);
             cursor: pointer;
-        } */
-
-            display: block;
-            width: fit-content;
-            max-width: 100%;
-            padding: 12px 24px;
-            background: #0088cc;
-            color: white;
-            text-decoration: none;
-            border-radius: 24px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            margin-top: 24px;
-            margin-bottom: 32px;
         }
 
         .video-btn:hover {
@@ -420,16 +405,16 @@
         /* ============ SIDE VIDEO PANEL ============ */
         .video-sidebar {
             position: fixed;
-            right: 20px;
+            right: -380px;
             top: 50%;
             transform: translateY(-50%);
-            width: 420px;
+            width: 340px;
             height: auto;
             background: transparent;
             border: 1px solid var(--primary);
             border-radius: 16px;
             z-index: 999;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             padding: 0;
@@ -438,6 +423,7 @@
         }
 
         .video-sidebar.active {
+            right: 20px;
             opacity: 1;
             pointer-events: auto;
         }
@@ -448,21 +434,22 @@
 
         .video-sidebar-close {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 8px;
+            right: 8px;
             background: var(--primary);
             color: var(--bg);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
-            z-index: 10;
+            z-index: 100;
+            padding: 0;
         }
 
         .video-sidebar-close:hover {
@@ -491,15 +478,15 @@
         }
 
         .video-info-panel {
-            display: none;
+            display: none !important;
         }
 
         .video-info-title {
-            display: none;
+            display: none !important;
         }
 
         .video-info-text {
-            display: none;
+            display: none !important;
         }
 
         /* ============ OVERLAY (затемнение фона) ============ */
