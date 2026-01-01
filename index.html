@@ -2,36 +2,789 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Музыкальные итоги 2026</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css"><!-- если есть общий CSS -->
+  <meta name="description" content="Музыкальные итоги и открытия 2026 года">
+  <title>Музыкальные Итоги 2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+        }
+        
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+          background: #0a0a0a;
+          color: #e0e0e0;
+          line-height: 1.6;
+          overflow-x: hidden;
+        }
+        
+        a {
+          color: #00d9ff;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+        
+        a:hover {
+          color: #ff006e;
+        }
+        
+        /* ============== BACKGROUND ============== */
+        .bg-gradient {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.08) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.08) 0%, transparent 50%);
+          pointer-events: none;
+          z-index: -1;
+        }
+        
+        /* ============== NAVBAR ============== */
+        .navbar {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1.5rem 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 10;
+        }
+        
+        .nav-brand a {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #00d9ff;
+          letter-spacing: 2px;
+        }
+        
+        .nav-menu {
+          display: flex;
+          gap: 2rem;
+        }
+        
+        .nav-link {
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: #b0b0b0;
+          position: relative;
+          transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #00d9ff;
+          transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+          color: #00d9ff;
+        }
+        
+        .nav-link:hover::after {
+          width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+          .navbar {
+            flex-direction: column;
+            gap: 1rem;
+          }
+          .nav-menu {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+          }
+        }
+        
+        /* ============== HERO ============== */
+        .hero {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 2rem;
+          position: relative;
+        }
+        
+        .hero-content {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          gap: 3rem;
+        }
+        
+        .hero-title-wrapper {
+          animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .hero-title {
+          font-size: 4rem;
+          font-weight: 900;
+          background: linear-gradient(135deg, #00d9ff 0%, #ff006e 50%, #00ffd9 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          letter-spacing: -1px;
+          margin-bottom: 1rem;
+          line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.3rem;
+          color: #a0a0a0;
+          max-width: 600px;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+        }
+        
+        .hero-visual {
+          animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        .audio-wave {
+          width: 100%;
+          max-width: 400px;
+          height: 60px;
+          animation: wavePulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes wavePulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.7;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 2.5rem;
+          }
+          .hero-subtitle {
+            font-size: 1rem;
+          }
+        }
+        
+        /* ============== ARCHIVE BANNER ============== */
+        .archive-banner {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+          align-items: center;
+          padding: 4rem 2rem;
+          max-width: 1400px;
+          margin: 3rem auto;
+          background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(255, 0, 110, 0.05) 100%);
+          border: 1px solid rgba(0, 217, 255, 0.1);
+          border-radius: 20px;
+        }
+        
+        .archive-content h2 {
+          font-size: 2.5rem;
+          margin-bottom: 1rem;
+          color: #00d9ff;
+        }
+        
+        .archive-content p {
+          font-size: 1.1rem;
+          color: #b0b0b0;
+          margin-bottom: 2rem;
+        }
+        
+        .archive-visual {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+        .vinyl-record {
+          width: 200px;
+          height: 200px;
+          background: radial-gradient(circle at 30% 30%, #ff006e, #0a0a0a);
+          border-radius: 50%;
+          box-shadow: 0 0 40px rgba(255, 0, 110, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+          animation: spinVinyl 3s linear infinite;
+          position: relative;
+        }
+        
+        .vinyl-record::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 60px;
+          height: 60px;
+          background: radial-gradient(circle, #00d9ff, #004466);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+        }
+        
+        @keyframes spinVinyl {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .archive-banner {
+            grid-template-columns: 1fr;
+          }
+          .vinyl-record {
+            width: 150px;
+            height: 150px;
+          }
+        }
+        
+        /* ============== SECTION STYLES ============== */
+        .container {
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+        
+        .section {
+          padding: 5rem 2rem;
+          position: relative;
+        }
+        
+        .section-title {
+          font-size: 2.5rem;
+          margin-bottom: 3rem;
+          text-align: center;
+          position: relative;
+          display: inline-block;
+          width: 100%;
+        }
+        
+        .section-title::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 3px;
+          background: linear-gradient(90deg, #00d9ff, #ff006e);
+          border-radius: 2px;
+        }
+        
+        /* ============== CARDS GRID ============== */
+        .cards-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-bottom: 3rem;
+        }
+        
+        .card {
+          background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(255, 0, 110, 0.05) 100%);
+          border: 1px solid rgba(0, 217, 255, 0.1);
+          border-radius: 16px;
+          padding: 2rem;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .card:hover {
+          border-color: rgba(0, 217, 255, 0.3);
+          box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+          transform: translateY(-5px);
+        }
+        
+        .card:hover::before {
+          left: 100%;
+        }
+        
+        .card-number {
+          font-size: 2.5rem;
+          font-weight: 900;
+          color: rgba(0, 217, 255, 0.2);
+          margin-bottom: 1rem;
+          font-family: 'Courier New', monospace;
+        }
+        
+        .card h3 {
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+          color: #e0e0e0;
+        }
+        
+        .card-stat {
+          color: #a0a0a0;
+          font-size: 0.95rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        .card-link {
+          color: #00d9ff;
+          font-weight: 600;
+          font-size: 0.95rem;
+        }
+        
+        .card-link:hover {
+          color: #ff006e;
+        }
+        
+        /* Card Album Specific */
+        .card-album {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .album-cover {
+          width: 100%;
+          aspect-ratio: 1;
+          background: linear-gradient(135deg, #00d9ff, #ff006e);
+          border-radius: 12px;
+          margin-bottom: 1.5rem;
+          animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+          0%, 100% {
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+          }
+          50% {
+            box-shadow: 0 0 40px rgba(255, 0, 110, 0.3);
+          }
+        }
+        
+        .card-artist-name {
+          color: #a0a0a0;
+          font-size: 0.9rem;
+          margin-bottom: 1rem;
+        }
+        
+        /* ============== DISCOVERY LIST ============== */
+        .discovery-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          margin-bottom: 3rem;
+        }
+        
+        .discovery-item {
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          padding: 1.5rem;
+          background: rgba(0, 217, 255, 0.03);
+          border-left: 3px solid #00d9ff;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+        
+        .discovery-item:hover {
+          background: rgba(0, 217, 255, 0.08);
+          border-left-color: #ff006e;
+          transform: translateX(10px);
+        }
+        
+        .discovery-index {
+          font-size: 1.5rem;
+          font-weight: 900;
+          color: rgba(0, 217, 255, 0.3);
+          font-family: 'Courier New', monospace;
+          min-width: 60px;
+        }
+        
+        .discovery-content {
+          flex: 1;
+        }
+        
+        .discovery-content h3 {
+          font-size: 1.1rem;
+          margin-bottom: 0.3rem;
+        }
+        
+        .discovery-content p {
+          color: #a0a0a0;
+          font-size: 0.9rem;
+        }
+        
+        .discovery-play {
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0, 217, 255, 0.1);
+          border: 2px solid #00d9ff;
+          border-radius: 50%;
+          font-size: 1.2rem;
+          transition: all 0.3s ease;
+        }
+        
+        .discovery-play:hover {
+          background: #00d9ff;
+          color: #0a0a0a;
+        }
+        
+        /* ============== STATISTICS ============== */
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          text-align: center;
+        }
+        
+        .stat-box {
+          padding: 2rem;
+          background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(255, 0, 110, 0.08) 100%);
+          border: 1px solid rgba(0, 217, 255, 0.15);
+          border-radius: 16px;
+          transition: all 0.3s ease;
+        }
+        
+        .stat-box:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 40px rgba(0, 217, 255, 0.2);
+        }
+        
+        .stat-number {
+          font-size: 2.5rem;
+          font-weight: 900;
+          background: linear-gradient(135deg, #00d9ff, #ff006e);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+          color: #a0a0a0;
+          font-size: 0.95rem;
+        }
+        
+        /* ============== BUTTONS ============== */
+        .btn {
+          display: inline-block;
+          padding: 0.9rem 2rem;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 0.95rem;
+          letter-spacing: 0.5px;
+          transition: all 0.3s ease;
+          border: none;
+          cursor: pointer;
+          text-align: center;
+        }
+        
+        .btn-primary {
+          background: linear-gradient(135deg, #00d9ff, #00ffd9);
+          color: #0a0a0a;
+        }
+        
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+        
+        .btn-secondary {
+          background: rgba(255, 0, 110, 0.15);
+          color: #ff006e;
+          border: 2px solid #ff006e;
+        }
+        
+        .btn-secondary:hover {
+          background: #ff006e;
+          color: #0a0a0a;
+          transform: translateY(-2px);
+        }
+        
+        /* ============== FOOTER ============== */
+        .footer {
+          background: rgba(0, 0, 0, 0.5);
+          border-top: 1px solid rgba(0, 217, 255, 0.1);
+          padding: 2rem;
+          text-align: center;
+          color: #a0a0a0;
+          margin-top: 5rem;
+        }
+        
+        .footer p {
+          margin: 0;
+        }
+        
+        .footer a {
+          color: #00d9ff;
+        }
+        
+        .footer a:hover {
+          color: #ff006e;
+        }
+        
+        /* ============== RESPONSIVE ============== */
+        @media (max-width: 768px) {
+          .section-title {
+            font-size: 1.8rem;
+          }
+          
+          .cards-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 2rem;
+          }
+          
+          .nav-menu {
+            flex-direction: column;
+            gap: 0.5rem;
+          }
+          
+          .stats-grid {
+            grid-template-columns: 1fr;
+          }
+        } 
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Музыкальные итоги 2026 года</h1>
-    <nav>
-      <a href="artists.html">Артисты</a>
-      <a href="albums.html">Альбомы</a>
-      <a href="discoveries.html">Открытия</a>
-      <a href="foreign.html">Иностранка</a>
-      <a href="videos.html">Видео</a>
-      <a href="statistics.html">Статистика</a>
+  <!-- Background animated gradient -->
+  <div class="bg-gradient"></div>
+
+  <header class="hero">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <a href="/">🎵 2026</a>
+      </div>
+      <div class="nav-menu">
+        <a href="#artists" class="nav-link">Артисты</a>
+        <a href="#albums" class="nav-link">Альбомы</a>
+        <a href="#discoveries" class="nav-link">Открытия</a>
+        <a href="#foreign" class="nav-link">Иностранка</a>
+        <a href="#statistics" class="nav-link">Статистика</a>
+      </div>
     </nav>
+
+    <div class="hero-content">
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title">Музыка 2026</h1>
+        <p class="hero-subtitle">Лучшее, что мы слушали, открыли и полюбили</p>
+      </div>
+      
+      <div class="hero-visual">
+        <svg class="audio-wave" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 30 Q 15 10, 20 30 T 40 30" stroke="#00d9ff" stroke-width="2" fill="none"/>
+          <path d="M50 30 Q 55 5, 60 30 T 80 30" stroke="#ff006e" stroke-width="2" fill="none"/>
+          <path d="M90 30 Q 95 15, 100 30 T 120 30" stroke="#00ffd9" stroke-width="2" fill="none"/>
+          <path d="M130 30 Q 135 8, 140 30 T 160 30" stroke="#00d9ff" stroke-width="2" fill="none"/>
+          <path d="M170 30 Q 175 12, 180 30 T 200 30" stroke="#ff006e" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section>
-      <h2>Главное в 2026 году</h2>
-      <p>Короткое интро о логике и результатах 2026-го.</p>
+    <!-- Секция с призывом исследовать архив 2025 -->
+    <section class="archive-banner">
+      <div class="archive-content">
+        <h2>Как это было в 2025 году?</h2>
+        <p>Погрузись в музыкальные итоги прошлого года</p>
+        <a href="index2025.html" class="btn btn-secondary">Открыть архив 2025</a>
+      </div>
+      <div class="archive-visual">
+        <div class="vinyl-record"></div>
+      </div>
     </section>
 
-    <section id="archive-2025">
-      <h2>Как это было в 2025 году</h2>
-      <p>
-        Посмотреть архивную версию проекта за 2025 год можно здесь:
-        <a href="index2025.html">музыкальные итоги 2025</a>.
-      </p>
+    <!-- Секция артистов -->
+    <section id="artists" class="section section-artists">
+      <div class="container">
+        <h2 class="section-title">Топ артистов 2026</h2>
+        <div class="cards-grid">
+          <div class="card card-artist">
+            <div class="card-number">01</div>
+            <h3>Артист #1</h3>
+            <p class="card-stat">234 прослушивания</p>
+            <a href="#" class="card-link">Подробнее →</a>
+          </div>
+          <div class="card card-artist">
+            <div class="card-number">02</div>
+            <h3>Артист #2</h3>
+            <p class="card-stat">187 прослушиваний</p>
+            <a href="#" class="card-link">Подробнее →</a>
+          </div>
+          <div class="card card-artist">
+            <div class="card-number">03</div>
+            <h3>Артист #3</h3>
+            <p class="card-stat">156 прослушиваний</p>
+            <a href="#" class="card-link">Подробнее →</a>
+          </div>
+          <div class="card card-artist">
+            <div class="card-number">04</div>
+            <h3>Артист #4</h3>
+            <p class="card-stat">142 прослушивания</p>
+            <a href="#" class="card-link">Подробнее →</a>
+          </div>
+        </div>
+        <a href="artists.html" class="btn btn-primary">Все артисты</a>
+      </div>
+    </section>
+
+    <!-- Секция альбомов -->
+    <section id="albums" class="section section-albums">
+      <div class="container">
+        <h2 class="section-title">Лучшие альбомы</h2>
+        <div class="cards-grid">
+          <div class="card card-album">
+            <div class="album-cover"></div>
+            <h3>Альбом #1</h3>
+            <p class="card-artist-name">Артист</p>
+            <a href="#" class="card-link">Слушать →</a>
+          </div>
+          <div class="card card-album">
+            <div class="album-cover"></div>
+            <h3>Альбом #2</h3>
+            <p class="card-artist-name">Артист</p>
+            <a href="#" class="card-link">Слушать →</a>
+          </div>
+          <div class="card card-album">
+            <div class="album-cover"></div>
+            <h3>Альбом #3</h3>
+            <p class="card-artist-name">Артист</p>
+            <a href="#" class="card-link">Слушать →</a>
+          </div>
+          <div class="card card-album">
+            <div class="album-cover"></div>
+            <h3>Альбом #4</h3>
+            <p class="card-artist-name">Артист</p>
+            <a href="#" class="card-link">Слушать →</a>
+          </div>
+        </div>
+        <a href="albums.html" class="btn btn-primary">Все альбомы</a>
+      </div>
+    </section>
+
+    <!-- Секция открытий -->
+    <section id="discoveries" class="section section-discoveries">
+      <div class="container">
+        <h2 class="section-title">Открытия года</h2>
+        <div class="discovery-list">
+          <div class="discovery-item">
+            <div class="discovery-index">001</div>
+            <div class="discovery-content">
+              <h3>Трек #1</h3>
+              <p>Артист / Альбом</p>
+            </div>
+            <a href="#" class="discovery-play">▶</a>
+          </div>
+          <div class="discovery-item">
+            <div class="discovery-index">002</div>
+            <div class="discovery-content">
+              <h3>Трек #2</h3>
+              <p>Артист / Альбом</p>
+            </div>
+            <a href="#" class="discovery-play">▶</a>
+          </div>
+          <div class="discovery-item">
+            <div class="discovery-index">003</div>
+            <div class="discovery-content">
+              <h3>Трек #3</h3>
+              <p>Артист / Альбом</p>
+            </div>
+            <a href="#" class="discovery-play">▶</a>
+          </div>
+        </div>
+        <a href="discoveries.html" class="btn btn-primary">Все открытия</a>
+      </div>
+    </section>
+
+    <!-- Статистика -->
+    <section id="statistics" class="section section-stats">
+      <div class="container">
+        <h2 class="section-title">Статистика 2026</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-number">2,847</div>
+            <p class="stat-label">Всего прослушиваний</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">384</div>
+            <p class="stat-label">Уникальных треков</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">127</div>
+            <p class="stat-label">Артистов</p>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">42</div>
+            <p class="stat-label">Часов музыки</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Музыкальные итоги. Архив: <a href="index2025.html">2025</a> | <a href="https://github.com/russiankendricklamar/music-results-2025">GitHub</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
