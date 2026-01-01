@@ -610,20 +610,20 @@
     <nav class="navbar">
       <div class="nav-brand">
         <a href="/">🎵 2026</a>
-      </div>
+      <!-- </div>
       <div class="nav-menu">
         <a href="#artists" class="nav-link">Артисты</a>
         <a href="#albums" class="nav-link">Альбомы</a>
         <a href="#discoveries" class="nav-link">Открытия</a>
         <a href="#foreign" class="nav-link">Иностранка</a>
         <a href="#statistics" class="nav-link">Статистика</a>
-      </div>
+      </div> -->
     </nav>
 
     <div class="hero-content">
       <div class="hero-title-wrapper">
         <h1 class="hero-title">Музыка 2026</h1>
-        <p class="hero-subtitle">Лучшее, что мы слушали, открыли и полюбили</p>
+        <p class="hero-subtitle">В процессе разработки...</p>
       </div>
       
       <div class="hero-visual">
@@ -652,7 +652,7 @@
     </section>
 
     <!-- Секция артистов -->
-    <section id="artists" class="section section-artists">
+    <!-- <section id="artists" class="section section-artists">
       <div class="container">
         <h2 class="section-title">Топ артистов 2026</h2>
         <div class="cards-grid">
@@ -683,10 +683,10 @@
         </div>
         <a href="artists.html" class="btn btn-primary">Все артисты</a>
       </div>
-    </section>
+    </section> -->
 
     <!-- Секция альбомов -->
-    <section id="albums" class="section section-albums">
+    <!-- <section id="albums" class="section section-albums">
       <div class="container">
         <h2 class="section-title">Лучшие альбомы</h2>
         <div class="cards-grid">
@@ -717,10 +717,10 @@
         </div>
         <a href="albums.html" class="btn btn-primary">Все альбомы</a>
       </div>
-    </section>
+    </section> -->
 
     <!-- Секция открытий -->
-    <section id="discoveries" class="section section-discoveries">
+    <!-- <section id="discoveries" class="section section-discoveries">
       <div class="container">
         <h2 class="section-title">Открытия года</h2>
         <div class="discovery-list">
@@ -751,10 +751,10 @@
         </div>
         <a href="discoveries.html" class="btn btn-primary">Все открытия</a>
       </div>
-    </section>
+    </section> -->
 
     <!-- Статистика -->
-    <section id="statistics" class="section section-stats">
+    <!-- <section id="statistics" class="section section-stats">
       <div class="container">
         <h2 class="section-title">Статистика 2026</h2>
         <div class="stats-grid">
@@ -777,7 +777,7 @@
         </div>
       </div>
     </section>
-  </main>
+  </main> -->
 
   <footer class="footer">
     <div class="container">
@@ -785,6 +785,38 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+      // Smooth scroll и простая интерактивность
+      document.addEventListener('DOMContentLoaded', function() {
+        // Highlight active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+      
+        window.addEventListener('scroll', () => {
+          let current = '';
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 300) {
+              current = section.getAttribute('id');
+            }
+          });
+      
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) {
+              link.classList.add('active');
+            }
+          });
+        });
+      
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+          const hero = document.querySelector('.hero-content');
+          if (hero) {
+            hero.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
+          }
+        });
+      }); 
+  </script>
 </body>
 </html>
